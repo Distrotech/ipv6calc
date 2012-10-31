@@ -1,0 +1,154 @@
+ipv6calc
+
+                               INSTALLING
+
+Please read the file `README' before you start with the installation of the
+ipv6calc.
+
+
+USING RPM
+---------
+This tar-ball provides a spec file for building an source and binary RPM using
+	rpmbuild -ta ipv6calc-$version.tar.gz
+
+	Available build options:
+	 --with ip2location
+	 --with geoip
+
+After successful build you got two packages:
+	one source RPM ipv6calc-$version-$release.src.rpm
+	and one binary RPM ipv6calc-$version-$release.$arch.rpm
+
+For installing use
+	rpm -ihv ipv6calc-$version-$release.$arch.rpm
+For updating use
+	rpm -Fhv ipv6calc-$version-$release.$arch.rpm
+For deinstalling use
+	rpm -e ipv6calc
+
+
+HACKERS WAY
+-----------
+cd /usr/src ; tar xvzf ipv6calc*.tar.gz
+
+./configure --exec_prefix=/usr --mandir=/usr/share/man && make && make test && make -n install exec_prefix=/usr
+make install exec_prefix=/usr
+
+
+If you want to suppress configure's exec_prefix, specify bindir directly, e.g.
+
+./configure --prefix=/usr/local --bindir /usr/local/bin --mandir /usr/local/share/man
+
+
+
+For Solaris 8 you need following packages installed:
+autoconf
+automake
+gcc
+make
+binutils
+cvs (optional)
+perl
+m4
+
+
+CONFIGURE
+---------
+There is a configure script available.
+
+Following options are used:
+ --bindir=/usr/bin  (@bindir@)
+ --mandir=/usr/share/man (@mandir@)
+ --enable-ip2location (see below for more information)
+ --enable-geoip (see below for more information)
+
+Execute:
+ ./configure --bindir=/usr/bin --mandir=/usr/share/man
+
+
+UPDATE OF DATABASES
+-------------------
+ipv6calc contains several databases, currently
+* OUI type (IEEE)
+* IAB type (IEEE)
+* IPv4 address space assignment
+* IPv6 address space assignment
+to update this database before compilation you need:
+- install perl, wget, aggregate
+- run "make update"
+
+See also:
+ ./databases/registries/README
+ ./databases/ipv4-assignment/README
+ ./databases/ipv6-assignment/README
+ ./databases/ieee-iab/README
+ ./databases/ieee-oui/README
+
+
+IP2LOCATION LIBRARY
+-------------------
+You can use the IP2Location library with ipv6calc. The library is available
+at <http://www.ip2location.com/c.aspx>, and the currently supported version
+is at least 2.1.3 (versions below are NOT supported). The support is
+enabled with the --enable-ip2location configure option.
+
+If you have installed the IP2Location library in a non-standard place, you
+may find the --with-ip2location-headers=DIR and --with-ip2location-lib=DIR
+configure options useful. If you have problems finding the library at
+runtime, try linking it statically the --with-ip2location-static configure
+option.
+
+If you have problems building the IP2Location library, see the
+README.BUILDING-IP2LOCATION file in the ipv6calc distribution.
+
+
+GEOIP LIBRARY
+-------------
+You can also use the GeoIP library with ipv6calc. The library is available
+at <http://www.maxmind.com/app/ip-location>, and the currently supported
+version is 1.4.1 (although others may work too). The support is enabled
+with the --enable-geoip configure option.
+
+If you have installed the GeoIP library in a non-standard place, you may
+find the --with-geoip-headers=DIR and --with-geoip-lib=DIR configure
+options useful. If you have problems finding the library at runtime,
+try linking it statically the --with-geoip-static configure option.
+
+You can set the path to a default GeoIP database file by using the
+--with-geoip-default-file configure option. This file is used
+when ipv6calc is invoked with the '-G' (or '--db-geoip-default')
+option.
+
+
+PREPARATIONS
+------------
+"make update" updates the databases for static built-in
+"make distclean" cleans the source
+"make updateclean" also cleans the database header files
+
+
+COMPILE
+-------  
+To compile simply use "make".
+
+There should be no warnings or errors occur.
+
+
+TESTING
+-------
+It's very recommended to test the created binaries using "make test" or at least
+"make test-minimal" (this skips external database related tests).
+
+If using a build system, which has not GeoIP or IP2Location databases installed,
+but support was was enabled, use at least "make test-minimal"
+
+
+INSTALLATION
+------------
+If you want to install the binary use "make install".
+
+
+Peter Bieringer
+<pb (at) bieringer.de>
+
+$Id: INSTALLING,v 1.18 2011/10/29 08:35:24 peter Exp $

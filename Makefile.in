@@ -1,0 +1,150 @@
+# Project    : ipv6calc
+# File       : Makefile[.in]
+# Version    : $Id: Makefile.in,v 1.66 2011/10/08 14:33:23 peter Exp $
+# Copyright  : 2001-2011 by Peter Bieringer <pb (at) bieringer.de>
+#
+# Information:
+#  Makefile for ipv6calc project
+#
+
+# Compiler and Linker Options
+export DEFAULT_CFLAGS = -O2 -Wall -g
+
+ifeq (@ENABLE_BUNDLED_GETOPT@, 1)
+  GETOPT_MAKE = getopt-make
+endif
+
+
+CC	= @CC@
+
+all:		md5-make $(GETOPT_MAKE) ipv6calc ipv6logconv ipv6loganon ipv6logstats
+
+.c.o:
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -c $<
+
+
+ipv6logconv:	$(GETOPT_MAKE) lib-make ipv6logconv-make
+
+ipv6loganon:	$(GETOPT_MAKE) lib-make ipv6loganon-make
+
+ipv6logstats:	$(GETOPT_MAKE) lib-make ipv6logstats-make
+
+ipv6calc:	$(GETOPT_MAKE) lib-make ipv6calc-make ipv6calcweb-make
+
+updateclean:
+		${MAKE} distclean
+		for dir in databases/ieee-oui databases/ieee-iab databases/ipv4-assignment databases/ipv6-assignment; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			rm -rf autom4te.cache; \
+			cd $$ocwd ; \
+		done
+
+distclean:
+		${MAKE} clean
+		rm -f config.cache config.status config.log
+		rm -rf autom4te.cache
+		for dir in ipv6logconv ipv6loganon ipv6logstats ipv6calcweb ipv6calc man lib md5 $(GETOPT_MAKE) databases/ieee-oui databases/ieee-iab databases/ipv4-assignment databases/ipv6-assignment; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			rm -rf autom4te.cache; \
+			cd $$ocwd ; \
+		done
+
+autoclean:
+		${MAKE} distclean
+		rm -f Makefile
+		rm -f contrib/ipv6calc.spec
+		rm config.h
+		for dir in ipv6logconv ipv6loganon ipv6logstats ipv6calcweb ipv6calc man lib md5 $(GETOPT_MAKE); do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			cd $$ocwd ; \
+		done
+
+clean:
+		for dir in ipv6logconv ipv6loganon ipv6logstats ipv6calcweb ipv6calc man lib md5 $(GETOPT_MAKE); do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			cd $$ocwd ; \
+		done
+
+install:
+		for dir in ipv6logconv ipv6loganon ipv6logstats ipv6calcweb ipv6calc man lib $(GETOPT_MAKE); do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} install; \
+			cd $$ocwd ; \
+		done
+
+getopt-make:
+		cd getopt && ${MAKE}
+
+md5-make:
+		cd md5 && ${MAKE}
+
+lib-make:	md5-make db-ieee-oui-make db-ieee-iab-make db-ipv4-assignment-make db-ipv6-assignment-make
+		cd lib && ${MAKE} GETOPT_INCLUDE=@GETOPT_INCLUDE@
+
+ipv6logconv-make: lib-make
+		cd ipv6logconv && ${MAKE}
+
+ipv6loganon-make: lib-make
+		cd ipv6loganon && ${MAKE}
+
+ipv6logstats-make: lib-make
+		cd ipv6logstats && ${MAKE}
+
+ipv6calc-make:	lib-make
+		cd ipv6calc && ${MAKE}
+
+ipv6calcweb-make: ipv6calc-make
+		cd ipv6calcweb && ${MAKE}
+
+db-ieee-oui-make:
+		cd databases/ieee-oui && ${MAKE}
+
+db-ieee-iab-make:
+		cd databases/ieee-iab && ${MAKE}
+
+db-ipv4-assignment-make:
+		cd databases/ipv4-assignment && ${MAKE}
+
+db-ipv6-assignment-make:
+		cd databases/ipv6-assignment && ${MAKE}
+
+update:
+		for dir in databases/ieee-oui databases/ieee-iab databases/registries; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			cd $$ocwd ; \
+		done
+
+static:		ipv6logconv-make ipv6loganon-make ipv6logstats-make ipv6calc-make	
+		for dir in ipv6logconv ipv6loganon ipv6logstats ipv6calc; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ ; \
+			cd $$ocwd ; \
+		done
+
+test:
+		for dir in ipv6calc ipv6logconv ipv6loganon ipv6logstats ipv6calcweb; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ || exit 1; \
+			cd $$ocwd ; \
+		done
+
+test-minimal:
+		for dir in ipv6calc ipv6logconv ipv6loganon ipv6logstats ipv6calcweb; do \
+			ocwd=`pwd`; \
+			cd $$dir || exit 1; \
+			${MAKE} $@ || exit 1; \
+			cd $$ocwd ; \
+		done

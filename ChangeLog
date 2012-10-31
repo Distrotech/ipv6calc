@@ -1,0 +1,1229 @@
+/*
+ *  $Id: ChangeLog,v 1.229 2012/02/05 13:45:07 peter Exp $ 
+ */
+
+Info:
+	PB = Peter Bieringer <pb (at) bieringer.de>
+	NT = Niko Tyni <ntyni (at) iki dot fi>
+	ESR = Eric S. Raymond <esr (at) thyrsus dot com>
+	PV = Peter Volkov <pva (at) gentoo dot org>
+--------------------------------------------------------------------
+20120205/PB
+	lib/libipv6addr.c lib/libipv4addr.c: extend RFC info with section
+	ipv6calcweb.cgi: add support for RFC URLs
+	COPYING: update FSF address
+	databases: update
+	tag version 0.93.1
+
+20120204/PB
+	ipv6loganon/ipv6loganon.c: don't cache unmodified lines
+	lib/libipv6addr.c: extend detection for reserved addresses
+	ipv6calc/showinfo.c: use function from lib/libipv6addr.c for retrieving IPv6 registry string
+	lib/libipv4addr.c: minor review
+
+20120121/PB
+	ipv6calcweb.cgi: some improvements
+	databases: update
+	lib/libipv4addr.c: extend detection for reserved addresses (RFC5735)
+	ipv6calc/test_showinfo.sh,test_scenarios.sh: extend for testing reserved IPv4 addresses
+	tag version 0.93.0
+
+20120120/PB
+	ipv6calcweb.cgi: fix taint problem for external environment
+
+20120110/PB
+	ipv6calc/test_ipv6calc.sh: split good testscenarios into dedicated file test_scenarios.sh
+	ipv6calcweb/test_ipv6calcweb_form.sh: new for testing form mode
+	ipv6calcweb/test_ipv6calcweb.sh: improve error handling by output check
+	lib/ipv6calctypes.h: support machinereadable for FORMAT_ipv6literal
+	lib/libipv6calc.c: minor bugfix
+	ipv6calc/test_showinfo.sh: add FORMAT_ipv6literal tests
+	ipv6calc/test_ipv6calc.sh: split some test scenarios
+	ipv6calc/test_scenarios: new file
+	ipv6calcweb.cgi: minor improvements
+
+20120102/PB
+	ipv6calcweb.cgi: additional check on unescaped input
+
+20120101/PB
+	ipv6calcweb.cgi: minor review
+	ipv6calc.spec: create subpackage for ipv6calcweb
+	VERSION[.in]: new for improve scripting of build process
+	databases
+	 - update
+
+20111219/PB
+	ipv6calcweb.cgi: add support for form mode and configuration via SetEnv
+
+20111127/PB
+	lib/*: support scope IDs on IPv6 addresses (also on literal format)
+
+20111126/PB
+	lib/* ipv6calc/ipv6calc.c: support input/output format "ipv6literal"
+	lib/libmac.c, lib/libipv6calc.c: support MAC format xxxxxxxxxxxx (seen on some network devices) 
+
+20111105/PB
+	lib/libmac.c, lib/libipv6calc.c: support MAC format xxxxxx-xxxxxx (seen on HP switches)
+
+20111104/PB
+	ipv6calc/ipv6calc.c: autodetect -A geneui64 in case of -O eui64 and autodetected -I mac (only in non-pipe mode)
+	
+20111103/PB
+	ipv6loganon/ipv6loganon.c, ipv6logconv/ipv6logconv.c:
+	 - using sprintf for LRU cache in more secure way (credits to Luca Bruno)
+
+20111102/PB
+	ipv6calc/ipv6calc.c: force -O eui64 to request either -I mac or -A geneui64
+
+20111029/PB
+	update doc, add ldp.dsl and adjust generate script
+
+20111026/PB
+	update documentation and INSTALLING
+
+20111009/PB
+	configure.in
+	 - Exclude use of GeoIP_lib_version also for GeoIP 1.4.5 IPv6 support
+	ipv6calc/ipv6calc.c
+	 - display GeoIP IPv6 compat mode, if enabled
+
+20111008/PB
+	configure.in, ipv6calc/showinfo.c
+	 - Extend for GeoIP 1.4.5 IPv6 support (which has reduced function set)
+	Makefile.in (all)
+	 - introduce "make test-minimal" to skip GeoIP/IP2Location tests on RPM build systems
+	ipv6calc.spec.in
+	 - replace 'make test' by 'make test-minimal'
+	ipv6calc/showinfo
+	 - increase output version to 5, adding IPV6CALC_FEATURES in machine readable output
+	ipv6calcweb/ipv6calcweb.cgi.in
+	 - fix broken ARIN whois URL
+	 - show information from IPV6CALC_FEATURES
+	 - claim about missing IP2Location or GeoIP database files, if feature is enabled
+	tag version 0.92.0
+
+20111008/PB
+	databases
+	 - update
+	ipv6calc
+	 - support option "-v -v" to show extended version information
+	database generation programs
+	 - retrieve and store database status (last update) into related header file
+	tag version 0.91.0
+
+20111006/PB
+	configure.in
+	 - checking GeoIP library for IPv6 support
+	ipv6calc/ipv6calc.c, ipv6calc/showinfo.c, lib/ipv6calchelp.c, ipv6calc/test_showinfo.sh
+	 - skip IPv6 related GeoIP parts, if support is missing in GeoIP library
+
+20110916/PB
+	6rd extension: change options to support stdin for IPv4 addresses
+	minor code review
+	extend online help for action types
+
+20110915/PB
+	Makefile: catch exit code on sub tests
+	syntax fix "octett" -> "octet"
+	ipv6calc, ipv6calccommands.h, ipv6calcoptions.h, ipv6calctypes.h,
+	librfc5569.c, librfc5569.h, Makefile.in
+	 - add 6rd extension from Raphaël Assénat and add test case
+	database
+	 - update
+
+20110610/PB
+	database
+	 - update
+	tag version 0.90.1
+
+20110601/PB
+	add configure options for disabling compiled-in databases:
+		--disable-db-ieee
+		--disable-db-ipv4
+		--disable-db-ipv6
+
+20110526/PB
+	database
+	 -update
+	minor fixes
+	tag version 0.90.0
+
+20110515/PB
+	ipv6calc
+	 - disable accept of 'printstart' & 'printend' option for output type 'ipv6addr' (not suppported at all at the moment)
+	 - add option 'forceprefix <num>'
+	 - add option 'f|flush' for pipe mode
+	 - implement pipe mode (autodetected)
+	 - GeoIP option '--db-geoip-default|-G' enables now IPv4 and IPv6 default database, if file locations are compiled in
+	 - new options for specifying GeoIP file locations: '--db-geoip-ipv4' and '--db-geoip-ipv6'
+	 - new option '--db-ip2location-default|-L' for enabling IPv4 or IPv6 default database, if file locations are compiled in
+	 - extend test cases
+	BUILD
+	 --with-geoip-default-file is replaced by --with-geoip-ipv4-default-file
+	 - new options for specifying IP2Location default file locations
+	    --with-ip2location-ipv4-default-file
+	    --with-ip2location-ipv6-default-file
+	registry databases
+	 - update
+
+20110512/PB
+	ipv6loganon:
+	 - add support for option -f (flush)
+	 - some bugfixes
+	ipv6calc, ipv6calcweb.cgi
+	 - implement support for GeoIP IPv6 database
+	ipv6calcweb.cgi
+	 - skip not-useful entries for IP2LOCATION in case of unsupported by database
+	update information for IP2Location 4.0.2
+
+20110511/PB
+	ipv6loganon:
+	 - add support for option -w (write) and -a (append) output to a given file
+	 - IPv6 address output is now in compressed format
+
+20110505/PB
+	lib/librfc1884.c
+	 - cosmetic improvement of debug information
+	lib/ipv6calchelp.c
+	 - add space between token and ":"
+	 - fix --out -h not showing explanation
+	update-registries.sh
+	 - add workaround for buggy encoding information in XML
+	databases
+	 - update
+	tag version 0.82.1
+
+20110504/PB
+	ipv6calc/ipv6calc.c
+	 - add some debug code
+	 - improve selection of format switch for revipv4
+	lib/libipv4addr.c lib/libmac.c
+	 - clear 'valid' flag also if structure is cleared
+
+20110329/PB
+	ipv6calc/test_ipv6calc.sh, ipv6calc/showinfo.c, lib/libipv6addr.[h,c]
+	 - add support for RFC 6052 (NAT64)
+	databases:
+	 - update
+	tag version 0.82.0
+	
+20110305/PB
+	ipv6calc/test_ipv6calc.sh:
+	 - add test cases for RFC 5952
+	doc
+	 - add URL to openSUSE, minor cleanup
+
+20110227/PB
+	databases:
+	 - change from txt to xml for IANA data
+	 - update
+	ipv6calc/test_ipv6calc.sh:
+	 -add good/bad testcases for explicit and autodetection input
+	 - improve catch of errors
+	ipv6calc/showinfo.c:
+	 - fix buggy fprintf output devices
+	ipv6calc/ipv6calc.c:
+	 - add support for output format FORMAT_mac
+	 - extend auto-output detection for input format FORMAT_mac, FORMAT_bitstring, FORMAT_base85
+	 - add dedicated error message if auto-input detection doesn't work
+	lib/librfc1886.c:
+	 - fix librfc1886_formatcheck for proper work with autodetection
+	lib/librfc1884.c:
+	 - fix debug messages
+	lib/libmac.[ch]:
+	 - add function macaddrstruct_to_string
+	lib/libipv6calc.c:
+	 - improve autodetection
+	lib/libipv6addr.c, lib/libipv4addr.c:
+	 - improve format check
+	lib/ipv6calctypes.h:
+	 - add new format type for non-working autodetection
+
+20100921/PB
+	update databases
+	lib/librfc1886.c: take care of prefix length before printing nibbles
+	 (bugfix, but breaking old behavior, if prefix length is used)
+	tag version 0.80.0
+
+20100520/PB
+	configure.in: add value for copyright year, update version number
+	some header files: replace hardcoded copyright year with value
+	lib/librfc1884.c: minor bugfix
+
+	From http://patch-tracker.debian.org/package/ipv6calc/0.73.0-3
+	ipv6calc/showinfo.c: fix typo regarding Teredo addresses (not affecting -m)
+	lib/ipv6calchelp.c: fix segfault
+	*/Makefile.in: fixes
+
+20100427/PB
+	lib/librfc1884.c: bugfix regarding uncompressing an address
+	ipv6calc/test_ipv6calc.c: add some testcases
+
+20090808/PB
+	ipv6calc/ipv6calc.c
+	 - add auto-output format detection for revnibble
+	 - do not print resultstring, if empty
+	ipv6calc/test_ipv6calc.sh
+	 - add input validation tests
+	lib/ipv6calchelp.[ch]
+	 - support machine readable output for input types
+	lib/libifinet6.c
+	lib/librfc2874.c
+	 - cosmetic fixes of error messages
+	lib/libipv4addr.c
+	lib/libipv6addr.c
+	lib/librfc1886.c
+	 - improve input validation
+	 - cosmetic fixes of error messages
+
+20090811/PB
+	update databases
+	ipv6calc/ipv6calc.c
+	 - add support for '-m' for '--out|action -?'
+	lib/ipv6calchelp.[ch]
+	 - support machine readable output for output/action types
+	tag version 0.73.0
+
+20090808/PB
+	ipv6calc/ipv6calc.c
+	 - add auto-output format detection for revnibble
+	 - do not print resultstring, if empty
+	 - add support for '-m' for '--in -?'
+	ipv6calc/test_ipv6calc.sh
+	 - add input validation tests
+	lib/ipv6calchelp.[ch]
+	 - support machine readable output for input types
+	lib/libifinet6.c
+	lib/librfc2874.c
+	 - cosmetic fixes of error messages
+	lib/libipv4addr.c
+	lib/libipv6addr.c
+	lib/librfc1886.c
+	 - improve input validation
+	 - cosmetic fixes of error messages
+
+20090620/PB
+	databases/registries/update-registries.sh
+	 - fix IANA ipv6-unicast-address-assignments weblink problem
+
+20090611/PB
+	update databases
+	add /usr/bin/ipv6calc to binary list of ipv6calcweb.cgi
+	tag version 0.72.2
+
+20090111/PB
+	update databases
+	tag version 0.72.1
+
+20090106/PV
+	various Makefile.in and Makefile
+	 - rename $(root) into $(DESTDIR) to respect GNU coding standards
+	 - fixed datarootdir warning
+
+20081231/PB
+	ipv6calc/ipv6calc.c
+	 - print token GeoIP, IP2Location, if supported
+	update databases
+
+20081231/PV
+	configure.in
+	 - apply fix for GeoIP option
+	various Makefile.in and Makefile
+	 - adjust/switch to Makefile.in and improvements (use of @CC@,
+	    remove CFLAGS, LDFLAGS, fix @ENABLE_BUNDLED_GETOPT@)
+
+20081119/PB
+	databases/registries/update-registries.sh
+	 - create registry subdir if not existing
+	 - fix IANA ipv4-address-space weblink problem
+	databases/ieee-iab/create_ieee_iab_headerfile.pl
+	 - remove '"' from names to avoid problems in generated header file
+	databases/ieee-oui/Makefile
+	 - adjust remote filename on webserver
+	ipv6calc/ipv6calc.c
+	 - do not show warning messages for missing GeoIP/IP2Location support
+	    if option "-q" is used (good for ipv6calcweb.cgi)
+	Makefile[.in]
+	 - move "make test" from "make install" to dedicated "make ..."
+	 - remove "make installonly"
+	Several files
+	 - minor cleanup
+	tag version 0.72.0
+
+20070811/PB
+	lib/libipv6addr.{c,h}
+	 - detect link-local-teredo addresses
+
+20070705/PB
+	ipv6loganon/test_ipv6loganon.sh
+	 - add ORCHID test scenario
+	lib/libipv6addr.{c,h}
+	 - fix octal printout
+	 - add hex printout
+	 - support ORCHID in anonymize
+	lib/libipv4addr.{c,h}
+	 - add octal & hex printout
+	ipv6calc/showinfo.c
+	 - print warning message in IP2Location longitude/latitude if 0
+	 - do not print GeoIP/IP2Location information on non-global IPv6 addresses
+	 - fix output on ISATAP addresses (stderr->stdout)
+	ipv6calc/ipv6calc.c
+	 - support octal output for IPv4 and hex output for IPv4 and IPv6
+
+20070704/PB
+	lib/libipv6addr.{c,h}
+	ipv6calc/showinfo.c
+	 - add support for ORCHID address type
+
+20070605/PB
+	ipv6calcweb/ipv6calcweb.cgi.in
+	 - fix built-in list for GeoCityLite
+	ipv6calc/showinfo.c
+	 - do not show "GeoIP|IP2Location returned no record" in quiet mode
+
+20070601/PB
+	update databases
+	update doc files
+	minor fixes in test scripts
+	tag version 0.71.0
+
+20070426/PB
+	lib/libipv6addr.{c,h} lib/ipv6calcoptions.h lib/ipv6calccommands.h
+	ipv6loganon/ipv6loganon*
+	ipv6calc/ipv6calc.c
+	 - add support for anonymizing IPv6 prefix flexible (mask-ipv6)
+	 - add new preset options for anonmiyzing (careful,paranoid)
+
+20070402/PB
+	ipv6calc/showinfo.c
+	 - skip displaying of IPV4_SOURCE if no data is given
+	 - fix month of IP2Location database
+	 - separate IP2Location information for IPv4 and IPv6 (increase output version to 4)
+	ipv6calcweb/ipv6calcweb.cgi.in
+	 - fix database options according to changes before releasing 0.70.0
+	 - if server address is skipped, do not retrieve information at all
+	 - use built-in list for detecting binary and database files on various locations
+	
+20070401/PB
+	update databases
+	tag version 0.70.0
+
+20070303/PB
+	autogen.sh
+	 - add support for more options, see -? for more
+	ipv6calc/showinfo.[h,c]
+	 - revert to pre 20070215 release, IP2Location (2.1.3) was fixed now
+	ipv6calc/ipv6calc.h
+	 - adjust copyright year
+	databases/registries/update-registries.sh
+	 - remove unconditional exit code 0
+	databases/registries/update-registries.sh databases/ipv{4,6}-assignment/create-registry-list.pl
+	 - change from %Y%m%d to -latest
+	databases/ipv6-assignment/create-registry-list.pl
+	 - reenable all registries
+	databases/registries/Makefile
+	 - support "lacnic" on distclean
+	databases/ipv4-assignment/Makefile
+	 - cleanup
+	
+20070215/PB
+	ipv6calc/showinfo.[h,c]
+	 - move prototypes in case of use of IP2Location (2.1.2) because of a strange compilation warning
+	ipv6calc/Makefile.in
+	 - reorder CFLAGS according to patch from NT
+
+20070214/PB
+	contrib/ipv6calc.spec[.in] ipv6calc/Makefile[.in]
+	 - adjustments according to remove of static GeoIP/IP2Location support
+	 
+20070214/NT
+	databases/GeoIP databases/IP2Location	
+	 - remove support of static (built-in) support
+
+20070207/PB
+	ipv6calc/ipv6calc.c lib/ipv6calctypes.h
+	 - add support for action anonymize
+
+20070205/PB
+	lib/libipv{4,6}addr.{c,h}
+	 - migrate IPv4/IPv6 address anonymization code into
+	    ipv6loganon to libraries
+
+20070202/NT
+	ipv6loganon/ipv6loganonhelp.c
+	 - spelling fixes
+	man/ipv6loganon.8
+	 - contribution
+
+20070201/PB
+	database update
+	ipv6loganon/*
+	 - minor improvements, add README
+
+20070131/PB
+	ipv6calc/showinfo.c
+	 - fix bug by exchange TEREDO SERVER<->CLIENT tokens
+	 - code improvements (triggered by splint)
+	ipv6loganon/*
+	 - improve ipv6loganon
+	lib/*.c
+	 - code improvements (triggered by splint)
+
+20070130/PB
+	ipv6loganon/*
+	 - initial creation
+
+20070116/ESR
+	man/ipv6calc.8
+	 - code fixes
+
+20061028/NT+PB
+	GeoIP support
+	 - add new configure options
+	    --enable-geoip-system: use system GeoIP library
+	    --enable-geoip-default-file: specify default database file
+	Getopts support
+	 - configure detects now the presence of system getopts library
+	
+20061021/PB
+	IP2Location support
+	 - update to API 2.1.0 (which supports IPv6 now)
+	GeoIP support
+	 - update to API 1.4.0
+	configure.in Makefile.in
+	 - add support for global version numbers of APIs
+	ipv6calc/showinfo.c ipv6calc/ipv6calc.c
+	 - add support for 2 different database files for IP2Location
+	 - change options
+	    -p <file> => --db-ip2location-ipv4 <file>
+	    -g <file> => --db-geoip <file>
+	 - new option
+	    --db-ip2location-ipv6 <file>
+	update databases
+
+20060828/PB
+	ipv6calcweb/ipv6calcweb.cgi.in
+	 - remove non-ascii chars on GEOIP_DATABASE_INFO
+	update databases
+	tag version 0.61.0
+
+20060807/PB
+	ipv6calc/showinfo.c
+	 - make code for printing GeoIP and IP2Location universal for IPv4 and IPv6
+	 - fix missing printout of footer in case of IPv6 address is given
+	ipv6calcweb/ipv6calcweb.cgi.in
+	 - toggle background for lines with embedded IPv4 address
+	
+20060806/PB
+	<several files>
+	 - add support for GeoIP (GeoIP-1.3.17)
+	LICENSE
+	 - updates according to changes
+	update databases
+
+20060710/PB
+	<several files>
+	 - change internal version number handling from dedicated file(s) to configure.in
+	update databases
+	tag version 0.60.1
+
+20060707/NT
+	ipv6calc/test_ipv6calc.sh
+	 - catch result proper
+	configure.in
+	 - define AC_C_BIGENDIAN for proper support of big-endian arch
+	 - improve version definition, remove acconfig.h (no longer needed)
+	config.h.in
+	 - regenerated during autoheader
+	md5/Makefile
+	md5/md5.c
+	 - fix code for proper support of big-endian arch
+	autogen.sh
+	 - add call to autoheader
+
+20060625/PB
+	update databases
+	tag version 0.60.0
+	Makefile[.in]
+	 - remove autom4te.cache also in subdirectories
+
+20060612/PB
+	databases/IP2Location/C-IP2Location-1.1.0/libIP2Location/IP2Location.c
+	 - fix bug in original code according to retrieve date from database
+	config.h.in configure.in
+	 - add support for SUPPORT_IP2LOCATION in config.h
+	lib/ipv6calchelp.c
+	 - add comment for option -p
+	ipv6calc/ipv6calc.c
+	 - add internal flag for IP2Location support
+	lib/ipv6calctypes.h ipv6calc/showinfo.c 
+	 - print embedded IPv4 addresses explicitly in embedded format []
+	   this solves the issue if more than one IPv4 address is included in IPv6 address
+	lib/libipv6addr.c
+	 - support new Teredo prefix (RFC 4380)
+	lib/libipv4addr.c
+	 - exclude some RFC1918/RFC3330 addresses from registry lookup, report reserved(reason)
+	   instead
+	lib/libipv6addr.h
+	 - lower case "teredo"
+	lib/ipv6calctypes.h
+	 - add new (internal used) format "printembedded"
+	lib/Makefile
+	 - fix elements in $(OBJS), minor review
+	ipv6calcweb/ipv6calcweb.cgi
+	 - add support for variables with embedded IPv4 address
+	 - keep sort order of ipv6calc -m output
+	 - fix whois URL of ARIN,APNIC,LACNIC
+	 - remove whois URL for 6bone addresses, no longer valid
+	 - add IP2Location information in footer (if used)
+	 - add required output version for check
+	ipv6calc/showinfo.h
+	 - define output version
+	ipv6calc/showinfo.c
+	 - support embedded IPv4 addresses in machine readable output
+	ipv6calc/ipv6calc.c
+	 - missing IP2Location database is now only a soft error
+	 - add flag whether IP2Location database is given
+	man/ipv6logconv.8
+	 - fix small problem with hyphens (thanks to Niko Tyni)
+
+20060610/PB
+	ipv6calc/showinfo.c/print_ipv4addr
+	 - check for result != of IP2Location before using (prevents segfault)
+
+20060608/PB
+	ipv6calcweb/ipv6calcweb.cgi
+	 - add support for format=<format> in QUERY_STRING
+
+20060607/PB
+	ipv6calcweb/ipv6calcweb.cgi
+	 - add support for IP2Location according to showinfo.c
+	contrib/ipv6calc.spec[.in]
+	 - add support for rebuild option --with-ip2location
+	LICENSE
+	 - updates according to changes
+	Makefile.in
+	configure.in
+	ipv6calc/Makefile.in
+	 - make IP2Location support switchable (--enable-ip2location)
+	ipv6calc/ipv6calc.c
+	lib/ipv6calcoptions.h
+	 - fix wrong named option (-f instead of -p)
+	lib/librfc1924.c
+	 - replace conversion code with clean reimplementation
+	    created by Niko Tyni because of unknown license issue
+	    of the old piece of code
+	update databases
+
+20060317/PB
+	databases/ipv6-assignment/create-registry-list.pl
+	databases/ipv4-assignment/create-registry-list.pl
+	databases/ipv6-assignment/dbipv6addr_assignment.h
+	databases/ipv4-assignment/dbipv4addr_assignment.h
+	lib/libipv6addr.h
+	lib/libipv4addr.h
+	 - store also prefix length in lookup table
+	update databases
+
+20060316/PB
+	lib/libipv4addr.c
+	 - fix wrong use of () in ipv4addr_setword
+
+20060306/PB
+	Makefile.in
+	ipv6calc/Makefile.in
+	ipv6calc/ipv6calc.c
+	ipv6calc/showinfo.c
+	 - add support for IP2Location
+	lib/ipv6calcoptions.h
+	 - add new option: -p <path to IP2Location database>
+
+20060213/PB
+	ipv6calc/Makefile.in
+	 - replace "make" by "${MAKE}" (forgotten in 20051119)
+
+20060212/PB
+	update databases
+	databases/ieee-oui/create_ieee_oui_headerfile.pl
+	 - replace " with ' in entries
+	Makefile.in
+	 - remove also autom4te.cache on distclean
+	contrib/ipv6calc.spec[.in]
+	 - remove CVS version line to avoid problems
+	tag version 0.51
+
+20060126/PB
+	lib/ipv6calchelp.c
+	lib/ipv6calctypes.h
+	ipv6calc/ipv6calc.c
+	ipv6calc/ipv6calc.h
+	 - fix help for {upper|lower}case option inconsistency
+	 - add new shortcut options:
+		--in|-I --out|-O --action|-A
+		--printcompressed|-C --printuncompressed|-U --printfulluncompressed|-F
+	 - update copyright range
+	update databases
+
+20051119/PB
+	various make files
+	 - replace "make" by "${MAKE}"
+	 - add definitions for prefix and exec_prefix
+	update databases
+	
+20051026/PB
+	restructure registry database directory
+	 - process now registry files 2 days ago to prevent problems short after local day switches
+	add support for new registry AFRINIC
+	extend IPv6 registry data from 32 to 64 bits, adapt related function in lib/libipv6addr
+	
+20051021/PB
+	lib/libipv6addr
+	 - fix bug for unique local unicast detection
+	ipv6calc/showinfo
+	 - minor review
+	ipv6calcweb.cgi
+	 - updates according to changes of showinfo.c
+
+20051020/PB
+	lib/libipv6addr
+	ipv6calc/showinfo
+	ipv6logconv
+	ipv6logstats
+	 - add support for Teredo addresses
+
+20050916/PB
+	various make files
+	 - add missing entries to fullfil NetBSD's make
+
+20050915/PB
+	various c files
+	 - fix snprintf size parameter (credits to
+	    Radek Vokál for pointing this out)
+	lib/libipv6addr.c#ipv6addr_copy
+	 - fix bug which causes stack overflow (credits to
+	    Radek Vokál for finding the bug)
+	several Makefiles
+	 - add compiler switch -O2, reason for segfault was found
+	 - remove also static on clean
+	ipv6logconv:
+	 - add support for unique local unicast
+	update databases
+	tag version 0.50
+
+20050914/PB
+	databases/ipv4-assignment
+	 - fix update check script
+	Update databases
+	spec file fix
+	Tag version 0.49
+	
+20050725/PB
+	several Makefiles
+	 - remove compiler switch -O2, this causes segfaults on
+	    Fedora Core 4 using gcc-4.0.0-8
+	lib/libipv6addr
+	ipv6calc/showinfo
+	 - add support for Unique Local IPv6 Unicast Addresses
+
+20050719/PB
+	ipv6logstats, ipv6logconf
+	 - remove not really needed uid check in test step
+	md5/md5.c
+	 - fix for proper support of big endian machines
+	ipv6calc/test_ipv6calc.sh
+	 - fix proper error reporting
+	Further prototyping fixes
+	lib/libipv6addr
+	 - replace hardcoded IPv6 assignement by dynamic one
+	Update databases
+
+20050714/PB
+	Update databases
+	lib/libipv6addr
+	 - IPv6 TLA update
+
+20050711/PB
+	lib/librfc2874.c
+	lib/libipv6calc.c
+	 - Fix prototyping to avoid warnings
+	md5/Makefile
+	getopt/Makefile
+	 - Add CC definition
+
+20050628/PB
+	ipv6calc:
+	 - replace hardcoded $(root)/bin with $(root)@bindir@ (suggested by Andrew Walrond)
+
+20050214/PB
+	ipv6logconv:
+	 - fix online help
+
+20050212/PB
+	Update databases
+	ipv6logconv:
+	 - implement a lookup cache for speed-up (around 20%)
+	lib/libipv4addr
+	databases/ipv4-assignment/dbipv4addr_assignment.h
+	 - add a hint table for speed-up IPv4 registry lookups (around 10 times!)
+
+20041121/PB
+	Update databases
+	Tag version 0.48
+
+20041101/PB
+	General:
+	 - add missing directories to Makefile
+	 - fix typo in man page
+
+20041030/PB
+	General:
+	 - replace md5 function from openssl with a copy of coreutils (licence issue)
+	 - add support for IEEE/iab.txt database
+	Update databases
+	 - minor fixes in scripting
+
+20040830/PB
+	ipv6calc:
+	 - add support for recognizing 6to4 addresses generated by
+	    Microsoft OS
+	ipv6logconv:
+	 - add support for recognizing 6to4 addresses generated by
+	    Microsoft OS
+	 - add support for ISATAP addresses
+	Update databases
+	 - fix URL of RIPE ARIN, APNIC, LACNIC and add support for compressed files
+
+20031122/PB
+	ipv6logstats:
+	 - add option "-q|--quiet" for be more quiet
+	 - minor fixes
+	ipv6calc.spec.in
+	 - review, also install examples now
+	Some cleanups
+	tag version 0.47
+
+20031121/PB
+	IPv4 address database update
+	Some redesign on Makefile usage, move some Makefile to Makefile.in
+	 - minor redesign in Makefile.in
+	 - take now use of "bindir" and "mandir" in configure run
+	Update ipv6calc.spec.in
+	ipv6calcweb.cgi:
+	 - renamed to ipv6calcweb.cgi
+	 - version numbering will now be done using autoconf 	
+	ipv6logconv:
+	 - add option "-q|--quiet" for be more quiet
+
+20031026/PB
+	add contributed man pages
+
+20030907/PB
+	untag version 0.46
+	ipv6calcweb.cgi:
+	 - replace deprecated hash reference code with proper one
+	 - add forgotten lacnic support
+	 - allow ":" in SERVER_NAME to allow IPv6 addresses here also
+	tag version 0.46
+
+20030906/PB
+	update databases
+	tag version 0.46
+
+20030815/PB
+	enable option "printfulluncompressed" on output format octal
+	add example for output format octal
+
+20030722/PB
+	enable "printprefix", "printsuffix" for normal IPv6 addresses (autoswitch to uncompressed format)
+	prefix length of 6to4 addresses changed from 16 to 48 for proper support of format "printprefix"
+
+20030717/PB
+	add IPv6 LACNIC range
+
+20030628/PB
+	minor adjustments to "ipv6logstats", add a gri example
+
+20030623/PB
+	lib/librfc1886.c/librfc1886_addr_to_nibblestring:
+	 don't print trailing "." on middle part end
+
+20030615/PB
+	add support for new registry LACNIC (in IPv4)
+	add new program "ipv6logstats" to create historic address distribution statistics of webservers
+	 for use e.g. with gnuplot (add an example cmd script also)
+	remove autodetection code for EUI-64 (can misinterpret a proper IPv6 address)
+	fix some bugs in autodection
+
+20030404/PB
+	add new output format "octal" as requested from Lionel Elie Mamane <lionel at mamane dot lu>
+	 to create proper input for tinydns
+
+20030202/PB:
+	add new input type "ipv4hex" (hexadecimal IPv4 address)
+	add new input type "ipv4revhex" (reverse hexadecimal IPv4 address)
+	add support of spaces as delimiter of MAC/EUI-48 addresses
+	(above support was added to convert information got by 'martian source' logging)
+
+20021112/PB:
+	fix not proper handling of option "-q|--quiet" in some cases
+	enhance help options (-h|--help now also valid) on --out|action|in
+	ipv6logconf: "make test" can be now also executed by root (su to nobody)
+	tag version 0.45
+
+20021104/PB:
+	minor cosmetics in IEEE/OUI database
+
+20021104/PB:
+	update IPv6 address allocation for 2001::/16
+	update IPv4 databases
+	remove user/group on "make install" to enable non-root RPM build
+	update text on ipv6calcweb.cgi
+	minor reviews
+	tag version 0.44
+
+20020830/PB:
+	add support of dashes on MAC/EUI-48 addresses
+	showinfo prints now type of EUI-48 addresses
+
+20020817/PB:
+	fix configure.in, learnt now how to proper use AC_CHECK_LIB and AC_CHECK_HEADERS
+	 credits to Arkadiusz Miskiewicz!
+
+20020730/PB:
+	fix not proper autodetection code for MAC addresses
+	tag version 0.43
+
+20020717/PB:
+	update URL to OUI database, cosmetic OUI fixes, update databases
+	tag version 0.42
+
+20020511/PB:
+	bugfix not showing OUI on showinfo "-i"
+	update CIDR and OUI data
+
+20020421/PB:
+	review inttypes definitions, create new header file
+	minor fixes to suppress compiler warnings
+	tag version 0.40rc5
+	tag version 0.40
+
+20020420/PB:
+	fix defines for FreeBSD and OpenBSD
+	minor fixes
+
+20020410/PB:
+	tag version 0.40rc4
+
+20020410/PB:
+	new format feature: printmirrored for reverse dot separated format
+	minor fixes
+
+20020409/PB:
+	add new feature: printing IPv4 address in reverse PTR/DNS format
+	minor help extension
+
+20020408/PB:
+	fix completly broken online help
+	add some autodetection
+	printprefix|suffix now works also for fulluncompressed
+	some cleanups
+	tag version 0.40rc3
+
+20020407/PB:
+	minor cosmetic fixes, import forgotten ipv6logconv changes
+	tag version 0.40rc2
+
+20020405/PB:
+	fix some database dependencies
+	fix NetBSD has inttypes.h instead of stdint.h 
+	change back to not splint'ed librfc1924.c because of a self made not easy to find bug :-(
+	some minor fixes
+	tag version 0.40rc1
+
+20020403/PB:
+	more splint'ing, some type review
+
+20020401/PB:
+	more splint'ing, some type review
+	
+20020331/PB:
+	more splint'ing
+	extend ipv6logconv
+
+20020325/PB:
+	ipv6calcweg.cgi: extension for new showinfo extension
+
+20020324/PB:
+	fix alignment bugs in libipv4addr.c for word/dword access
+	libip4addr.c: add support for registry information
+	finish IPv4 registry detection code
+
+20020323/PB:
+	new feature: prefix+mac -> IPv6 address
+
+20020320/PB:
+	showinfo: add new info: registry, fix a bug in output of non machinereadable
+	some snprintf fixes
+
+20020318/PB:
+	move files to dedicated subdirectories
+	add program information on ipv6calc -m
+	enhance ipv6calcweb.cgi
+	begin to replace "sprintf" with "snprintf" (for security reasons)
+	-> release 0.40pre7
+
+20020317/PB:
+	ipv6calc: fix not working showtypes	
+	new: ipv6calcweb.cgi: Perl wrapper program for web interface
+	replace all "strtok" to "strtok_r" because of problems due calls in subfunctions (thanks to manpage...)
+	remove "-ansi" from compiling options
+	ipv6logconv: add output format "any", fills address, referer and user with proper information
+	some code lint
+
+20020316/PB:
+	new: ipv6logconv is able to convert addresses of webserver logs into special domain names
+	new: analog example for creating stats from converted logfiles
+	some fixes and enhancements
+
+20020311/PB:
+	new: add vendor database for global EUI-64/48 identifiers
+	new: libieee to display an OUI, if available
+	showinfo: machinereadable now printout one info per line (switchable later)
+	minor fixes
+	tag release 0.40pre5
+
+20020306/PB:
+	enhance help, adapt format to 80 chars per line
+	bugfix in showinfo.c relating to display EUI-64 id
+	began some code audit using splint
+
+20020303/PB:
+	migrate eui64 to privacy into new style
+	more cleanup
+	extend test script
+	tag release 0.40pre2
+	implement auto detection for input
+	showinfo now understands IPv4 address extraction of autoconfigured link local addresses
+	check format options against matrix
+	understand now input of revnibble (limited support) and bitstring labels
+	tag release 0.40pre3
+
+20020302/PB:
+	major work of redesign is done, test script runs well, unused files removed
+	tag release 0.40pre1
+
+20020301/PB:
+	start redesign
+
+20020227/PB:
+	libipv6addr.c: fixed a bug in ipv6addr_setoctett.c regarding num limit (oops..)
+	ipv6calc.c: move structure definitions to...
+	libmac.h: add related structure definition ipv6calc.c
+	libipv6addr.h: add related structure definition from ipv6calc.c
+	libipv4addr.*: new for handling IPv4 addresses
+	ipv4_to_6to4addr.*: new for handling conversion IPv4 -> IPv6to4
+	librfc3056.*: library for conversion IPv4 -> IPv6to4
+	libipv6calc.c: fix array index bug of compat[] (oops..)
+	tag release 0.39
+
+20020226/PB:
+	add original getopt tarball into samplecode, fill related READMEs
+	tag release 0.38
+
+20020224/PB:
+	move nibble string function to librfc1886
+	minor fixes
+	restore original samplecode files and remove CVS id to prevent CVS changes
+	add original getopt code to samplecode
+	tag release 0.37
+
+20020224/PB:
+	minor Makefile fixes
+	fix getopt Makefile
+	minor cosmetic fix in test script
+	cosmetic cleanups
+	some code cleanup and minor redesign, some optimizing
+	fixes stupid help call bugs
+	format options can be used now in more functions
+	add support of "printstart" and "printend" in "ip6int", "bitstring"
+	extend "showinfo", add "machine_readable" for easier postprocessing
+
+20020223/PB:
+	complete limited support of bistring labels
+	change examples to 6bone dummy address (3ffe:ffff:...)
+	add a trailling dot on ip6.[int|arpa] output
+	migrate getopt patch for OpenBSD submitted by Vladimir Kotal <vlada at openbsd dot cz>
+	minor Makefile fixes
+	tag release 0.37pre1
+
+20020219/PB:
+	fix a minor bug
+	tag release 0.36
+	
+20020218/PB:
+	fix bug relating to ipv6calc.h (changes now in ipv6calc.h.in)
+	start preparation for implementing bitstring conversions
+	tag release 0.35
+
+20020218/PB:
+	add new options: --addr_to_ip6arpa|-a
+	 does the same like --addr_to_ip6int|-r, but ends with "ip6.arpa" instead of "ip6.int"
+	addr_to_ip6int now understands "--uppercase|--lowercase"
+	tag release 0.35
+
+20020127/PB:
+	tag release 0.34
+
+20020124/PB:
+	use now "-lcrypto" instead of full defined lib name	
+
+20020121/PB:
+	update "COPYING" to current GPLv2, add "LICENSE" with some comments to make Debian people happy
+	add both in spec file
+
+20020120/PB:
+	showinfo now understands "solicited-node link-local multicast", "ISATAP", SLA on 6bone addresses
+	input now understands also "ISATAP" addresses
+
+20011227/PB:
+	Make tarball ready to use
+
+20011218/PB:
+	Change version numbering to autoconf/configure
+	Extend "showinfo" a little bit
+
+20011009/PB: release 0.30
+
+20011009/PB:
+	Fix missing scope initialization "base85_to_ipv6addr" 
+	 bug found by Greg Daley <greg.daley # eng.monash.edu.au>
+	 changed:
+		libipv6addr.c/ipv6addr_clear
+		librfc1924.c/base85_to_ipv6addrstruct
+
+20011007/PB:
+	Push source into local CVS system	
+
+0.28: Peter Bieringer <pb@bieringer.de>
+	Refixing compiling on BSD
+	Add a forgotten include in "eui64_to_privacy.c"
+
+0.27: Peter Bieringer <pb@bieringer.de>
+	Migrate files used from Linux kernel for address type resolution to libipv6addr.*
+	 add some extended tests (still not catch all)
+	"--showinfo" now rudimentary works
+
+0.26: Peter Bieringer <pb@bieringer.de>
+	Create wrapper functions to be independend of byte order storage in
+	 structure "in6_addr"
+	"--eui64_to_privacy" now calculate expected results
+	Begin of splitting "ipv6calc.h" into several smaller header files
+	Some code cleanup
+
+0.25: Peter Bieringer <pb@bieringer.de>
+	Restructure central address structure to use "in6_addr" struct
+	Some code cleanup
+
+0.24: Peter Bieringer <pb@bieringer.de>
+	Add option "--eui64_to_privacy" to calculate pseudo random suffices
+	 (experimental, result is not verified)
+	Add option "--showinfo"
+	 (experimental, not finnished)	
+	Add option "-d|--debug value"
+	Partially new debug code
+
+0.23: Peter Bieringer <pb@bieringer.de>
+	Fix permissions of doc files in spec file
+
+0.22: Peter Bieringer <pb@bieringer.de>
+	ANSI compiling cleanup
+	Cleanup special types to ANSI types
+
+0.21: Peter Bieringer <pb@bieringer.de>
+	Fix typo (strings.h -> string.h) at ifinet6_to_compressed.c
+
+0.20: Peter Bieringer <pb@bieringer.de>
+	Activate "--printsuffix" + "--printprefix" for "--addr_to_uncompressed"
+	Change format of "--mac_to_eui64" to described one (now without prefix)
+
+0.19: Peter Bieringer <pb@bieringer.de>
+	Extend "TODO" list
+	Print also info on "-?"
+	Fixes in spec file, see changelog at the end of that file
+	Add "COPYING" and "INSTALLING"
+	Add "installonly" on "Makefile" to support changes in spec file
+
+0.18: Peter Bieringer <pb@bieringer.de>
+	Add "make test" after "make" in spec file to stop build process, if
+	 compiling do not result in working code
+	Add samplecode directory	
+
+0.17: Peter Bieringer <pb@bieringer.de>
+	Fix "addr_to_ip6int" (sprintf)
+	Minor reviews
+
+0.16: Peter Bieringer <pb@bieringer.de>
+	Review "Makefile" to make it usable on BSD systems
+	Minor reviews to enable a clean make on BSD systems
+
+0.15: Peter Bieringer <pb@bieringer.de>
+	Create TODO
+	Some review
+	New option: mac_to_eui64
+
+0.14: Peter Bieringer <pb@bieringer.de>
+	Review CREDITS
+
+0.13: Peter Bieringer <pb@bieringer.de>
+	Add base85 support
+	Add compatv4/mapped support
+	Split away some RFC depended libaries
+	Rename internal used functions
+	Rename options (old ones still work)
+	Change IPv6 address compression method from getaddrinfo to
+	native calculation (hopefully bugless)
+	Some review
+
+0.12: Peter Bieringer <pb@bieringer.de>
+	Add some format checks
+
+0.11: Peter Bieringer <pb@bieringer.de>
+	Add code for successful compiling under BSD, credits to Hubert Feyrer <hubertf@netbsd.org>
+	Cosmetic cleanups
+
+0.10: Peter Bieringer <pb@bieringer.de>
+	redesigned to use a central libary for most of the functions
+	moved option handling to getopts
+	add option --maskprefix, --masksuffix for [full]uncompressed format
+
+0.09: Peter Bieringer <pb@bieringer.de>
+	fix in 0.07 (addr2uncompaddr) won't work, refix now
+
+0.08: Peter Bieringer <pb@bieringer.de>
+	fix Makefile and spec-file for RedHat 7.0.91
+
+0.07: Peter Bieringer <pb@bieringer.de>
+	fix addr2uncompaddr, now ::/prefixlength is well converted
+
+0.06: Peter Bieringer <pb@bieringer.de>
+	fix glibc-2.2.2 compilation problems, credits to Pekka Savola <pekkas@netcore.fi> in
+	 addr2if_inet6.c, ipv6calc.c
+
+0.05: Peter Bieringer <pb@bieringer.de> 
+	if_inet62addr added, printhelp_function moved into related source file
+
+0.04: Peter Bieringer <pb@bieringer.de> 
+	addr2if_inet6 will now display scope value in hex
+	 (use some sources of kernel files to get scope rather than writing my own)
+	cosmetic cleanups
+
+0.03: Peter Bieringer <pb@bieringer.de>
+	Splitt away each function in a seperate file
+	Working: addr2compaddr, addr2uncompaddr, addr2fulluncompaddr, addr2if_inet6
+	 addr2ip6_int
+
+0.02: Peter Bieringer <pb@bieringer.de>
+	Never published release, "addr2compaddr" is working
+
+0.01: Peter Bieringer <pb@bieringer.de>
+	Initial start

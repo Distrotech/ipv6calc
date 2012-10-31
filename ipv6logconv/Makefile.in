@@ -1,0 +1,66 @@
+# Project    : ipv6calc/ipv6logconv
+# File       : Makefile
+# Version    : $Id: Makefile.in,v 1.18 2011/10/08 14:33:23 peter Exp $
+# Copyright  : 2002-2011 by Peter Bieringer <pb (at) bieringer.de>
+#
+# Information:
+#  Makefile for ipv6logconv
+#
+
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir		= @bindir@
+
+# Compiler and Linker Options
+DEFAULT_CFLAGS ?= -O2 -Wall -g
+
+INCLUDES= @GETOPT_INCLUDE@ -I../ -I../lib/
+
+GETOBJS = @LIBOBJS@
+
+CC	= @CC@
+
+OBJS	= ipv6logconv.o ipv6logconvhelp.o
+
+# splint
+SPLINT_OPT_OUTSIDE = -uniondef +matchanyintegral --nullassign +ignoresigns -compdef -usedef -modobserver -formatconst -warnposix -exportlocal
+SPLINT_TODO_LATER = -unrecog -retvalint
+
+all:		ipv6logconv
+
+.c.o:
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -D__EXTENSIONS__ -c $<
+
+$(OBJS):	ipv6logconvoptions.h ipv6logconvhelp.h ipv6logconv.h
+
+libipv6calc.a:
+		cd ../ && ${MAKE} lib-make
+
+ipv6logconv:	$(OBJS) libipv6calc.a
+		$(CC) -o ipv6logconv $(OBJS) $(GETOBJS) -lipv6calc -L../lib/ $(LDFLAGS)
+
+static:		ipv6logconv
+		$(CC) -o ipv6logconv-static $(OBJS) $(GETOBJS) -lipv6calc -L../lib/ -static $(LDFLAGS)
+
+distclean:
+		${MAKE} clean
+
+autoclean:
+		${MAKE} distclean
+
+clean:
+		rm -f ipv6logconv ipv6logconv-static *.o
+
+test:		ipv6logconv
+		./test_ipv6logconv.sh
+
+test-minimal:
+		${MAKE} test
+
+splint:
+		splint *.c ../lib/*.c -I.. -I../lib $(SPLINT_OPT_OUTSIDE) $(SPLINT_TODO_LATER)
+
+install:	ipv6logconv
+		mkdir -p $(DESTDIR)$(bindir)
+		install -m 755 ipv6logconv $(DESTDIR)$(bindir)
+	

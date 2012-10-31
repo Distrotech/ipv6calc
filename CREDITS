@@ -1,0 +1,83 @@
+Credits to
+* Luca Bruno 
+   for supplying security patches
+
+* Raphaël Assénat
+   for contributing the 6rd extension
+
+* Evan Hunt & Dave Täht
+   for bug hunting on MIPS platform
+
+* Pedro LaWwrench
+   for bug reporting
+
+* JC Janos
+   for bug reporting
+
+* Niko Tyni
+   - clean reimplementation of RFC 1924 conversion code
+   - some help on configure.in
+   - contribution of patches and man files
+
+* Eric S. Raymond
+   - contribution of patch for man page
+
+* Authors of ircd
+   for RFC 1884 decompress algorithmus
+
+* Authors of net-tools
+   (recycling of some code)
+
+* Authors of Linux kernel
+   (recycling of some code)
+   
+* Arkadiusz Miskiewicz <misieki at pld dot ORG dot PL>
+   - for previously used RFC 1884 compress example code
+   - for hints how to use AC_CHECK_* in configure.in
+
+* Jun-ichiro itojun Hagino <itojun at iijlab dot net>
+   for previously used RFC 1884 compress example code
+
+* Horacio J. Peña <horape at compendium dot com dot ar>
+   for previously used RFC 1884 compress example code
+
+* Hubert Feyrer <hubertf at netbsd dot org>
+   for BSD enabling patches, NetBSD testbed and several help
+
+* Pekka Savola <pekkas at netcore dot fi>
+   for bug reporting
+
+* YOSHIFUJI Hideaki <yoshfuji at linux-ipv6 dot org>
+   for MD5 hints
+
+* Vladimir Kotal <vlada at openbsd dot cz>
+   for getopt patch for compiling on OpenBSD
+
+* Peter Poeml <poeml at suse dot de>
+   for bug reporting
+
+* Rolf Holtsmark <rolf at holtsmark dot no>
+   for bug reporting
+
+* <Matanuki at  goudge dot org>
+   for contributing man pages
+
+* Radek Vokal <rvokal at redhat dot com>
+   some fixes
+
+* Simon Arlott <simon at arlott dot org>
+   patch to extend IPv6 TLA assignement
+
+* Brad Allen/sonic.net
+   for bug reporting
+
+* VMware, in which my OpenBSD and FreeBSD installation is running
+
+* Peter A. Darnell and Philip E. Margolis
+   C - A software engineering approach
+    [one of the best books about programming language C around the world,
+      forget Kerningham/Ritchie, use this book instead like me for over
+      17 years ]
+
+
+	Peter Bieringer, 2011-09-14

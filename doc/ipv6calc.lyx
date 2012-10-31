@@ -1,0 +1,2536 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass docbook
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+The ipv6calc Homepage
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<author><firstname>Peter</firstname><surname>Bieringer</surname><affiliation><ad
+dress>pb at bieringer dot de</address></affiliation></author>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<revhistory> 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<revision> <revnumber>3.2</revnumber> <date>2011-10-29</date> <authorinitials>PB<
+/authorinitials></revision>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+</revhistory> 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+General
+\end_layout
+
+\begin_layout Standard
+ipv6calc is a small utility written in programming language C to manipulate
+ (not only) IPv6 addresses and is able to do other tricky things.
+ Intentions were convering a given IPv6 address into compressed format,
+ convering a given IPv6 address into the same format like shown in 
+\shape italic
+/proc/net/if_inet6
+\shape default
+ and (because it was not difficulty) migrating the Perl program 
+\shape italic
+ip6_int
+\shape default
+ into.
+ Now only one utiltity is needed to do a lot.
+\end_layout
+
+\begin_layout Standard
+This utility was also used in the past to extend features on network-functions-i
+pv6 library, used by initscripts-ipv6.
+\end_layout
+
+\begin_layout Standard
+Note: this tool got also its 
+\begin_inset CommandInset href
+LatexCommand href
+name "freshmeat / ipv6calc"
+target "http://freshmeat.net/projects/ipv6calc/"
+
+\end_inset
+
+ page (not maintained by the author)
+\end_layout
+
+\begin_layout Subsection
+Latest version
+\end_layout
+
+\begin_layout Standard
+Latest version since last update of this page is 0.92.0 (released 2011-10-08)
+\end_layout
+
+\begin_layout Subsection
+Included programs
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ipv6calc
+\begin_inset Quotes erd
+\end_inset
+
+: the main utility
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ipv6calcweb
+\begin_inset Quotes erd
+\end_inset
+
+: CGI wrapper for ipv6calc's address information output
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ipv6logconv
+\begin_inset Quotes erd
+\end_inset
+
+: log converter (IPv4/IPv6)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ipv6loganon
+\begin_inset Quotes erd
+\end_inset
+
+: log anonymizer (IPv4/IPv6)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ipv6logstats
+\begin_inset Quotes erd
+\end_inset
+
+: log statistic generator (IPv4/IPv6)
+\end_layout
+
+\begin_layout Subsection
+Included databases
+\end_layout
+
+\begin_layout Standard
+If not disabled during compiling the tool, following databases are statically
+ included:
+\end_layout
+
+\begin_layout Itemize
+IEEE & OUI databases (for decoding vendor part of MAC/EUI-48)
+\end_layout
+
+\begin_layout Itemize
+IPv4 assignment database (for selecting proper registry in ipv6calcweb.cgi)
+\end_layout
+
+\begin_layout Itemize
+IPv6 database (for selecting proper registry in ipv6calcweb.cgi)
+\end_layout
+
+\begin_layout Subsection
+Possible external databases
+\end_layout
+
+\begin_layout Standard
+If enabled during compiling the tool, following external (but local installed)
+ databases can be used
+\end_layout
+
+\begin_layout Itemize
+GeoIP IPv4, IPv6 (since 0.90.0, req.
+ GeoIP >= 1.4.5)
+\end_layout
+
+\begin_layout Itemize
+IP2Location IPv4, IPv6
+\end_layout
+
+\begin_layout Section
+License
+\end_layout
+
+\begin_layout Standard
+The program is published under the GNU GPL version 2.
+\end_layout
+
+\begin_layout Section
+Copyright
+\end_layout
+
+\begin_layout Standard
+(C) 2001 - 2011 by Dr.
+ Peter Bieringer
+\end_layout
+
+\begin_layout Section
+Author
+\end_layout
+
+\begin_layout Standard
+The author of ipv6calc is
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Dr. Peter Bieringer"
+target "mailto:pb@bieringer.de"
+
+\end_inset
+
+ with some minor contribution by others
+\end_layout
+
+\begin_layout Section
+Where to get sources or binaries
+\end_layout
+
+\begin_layout Subsection
+Latest version of sources:
+\end_layout
+
+\begin_layout Itemize
+Via CVS at 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6"
+target "http://www.deepspace6.net/"
+
+\end_inset
+
+: 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6 / CVS instructions"
+target "http://www.deepspace6.net/sections/cvs.html"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Via web interface to CVS at 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6"
+target "http://www.deepspace6.net/"
+
+\end_inset
+
+: 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6 / CVS web interface"
+target "http://cvs.deepspace6.net/view/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Via FTP at 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6"
+target "http://www.deepspace6.net/"
+
+\end_inset
+
+: 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6 / anonymous FTP"
+target "ftp://ftp.deepspace6.net/pub/ds6/sources/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Via FTP at 
+\begin_inset CommandInset href
+LatexCommand href
+name "ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc/"
+target "ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Available formats:
+\end_layout
+
+\begin_layout Subsubsection
+tar.gz
+\end_layout
+
+\begin_layout Standard
+A SPEC file is included, so you can build a RPM from source tarball using
+\end_layout
+
+\begin_layout Code
+
+$ rpmbuild -ta path/to/ipv6calc-$version.tar.gz
+\end_layout
+
+\begin_layout Subsubsection
+as RPM
+\end_layout
+
+\begin_layout Standard
+Currently only on 
+\begin_inset CommandInset href
+LatexCommand href
+name "rpmfind / ipv6calc"
+target "http://www.rpmfind.net/linux/rpm2html/search.php?query=ipv6calc"
+
+\end_inset
+
+, but there are plans to publish at least source RPMS on 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6"
+target "http://www.deepspace6.net/"
+
+\end_inset
+
+ some day.
+\end_layout
+
+\begin_layout Subsection
+Ready to use packages for several operating systems:
+\end_layout
+
+\begin_layout Subsubsection
+Fedora Linux
+\end_layout
+
+\begin_layout Standard
+Fedora 15 is the current developing platform, so use given hints above to
+ create a RPM.
+ Since Fedora 7 this package is included by default.
+\end_layout
+
+\begin_layout Subsubsection
+Red Hat Enterprise Linux and clones
+\end_layout
+
+\begin_layout Standard
+It's tested by the developer that creation of the RPM is working fine on
+ RHEL4.
+ Since RHEL5 this package is included by default.
+\end_layout
+
+\begin_layout Subsubsection
+Mandrake Linux
+\end_layout
+
+\begin_layout Standard
+Linux Mandrake is very similar to Red Hat Linux, therefore a rebuild should
+ work, too.
+\end_layout
+
+\begin_layout Subsubsection
+Debian GNU/Linux
+\end_layout
+
+\begin_layout Standard
+Package is maintained, more information can be found at 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://packages.debian.org/ipv6calc"
+target "http://packages.debian.org/ipv6calc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+openSUSE
+\end_layout
+
+\begin_layout Standard
+Package is maintained, more information can be found at 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://download.opensuse.org/repositories/home:/uebelhacker/"
+target "http://download.opensuse.org/repositories/home:/uebelhacker/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+NetBSD
+\end_layout
+
+\begin_layout Standard
+See here for more: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.netbsd.org/packages/net/ipv6calc/"
+target "http://www.netbsd.org/packages/net/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+FreeBSD
+\end_layout
+
+\begin_layout Standard
+See here for more: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.freebsd.org/cgi/cvsweb.cgi/ports/net/ipv6calc/"
+target "http://www.freebsd.org/cgi/cvsweb.cgi/ports/net/ipv6calc/"
+
+\end_inset
+
+ (
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.freebsd.org/cgi/query-pr.cgi?pr=34441"
+target "http://www.freebsd.org/cgi/query-pr.cgi?pr=34441"
+
+\end_inset
+
+), 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.freshports.org/net-mgmt/ipv6calc/"
+target "http://www.freshports.org/net-mgmt/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+OpenBSD
+\end_layout
+
+\begin_layout Standard
+See here for more: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.openbsd.org/cgi-bin/cvsweb/ports/net/ipv6calc/"
+target "http://www.openbsd.org/cgi-bin/cvsweb/ports/net/ipv6calc/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuring & Compiling
+\end_layout
+
+\begin_layout Subsection
+Configuring
+\end_layout
+
+\begin_layout Standard
+Following 
+\begin_inset Quotes eld
+\end_inset
+
+ipc6calc
+\begin_inset Quotes erd
+\end_inset
+
+ related configure options are currently supported (note: disabling the
+ internal databases reduces the size of the resulting binary a lot):
+\end_layout
+
+\begin_layout Code
+
+  --disable-db-ieee       Disable IEEE database (default: enabled)
+\end_layout
+
+\begin_layout Code
+
+  --disable-db-ipv4       Disable IPv4 database (default: enabled)
+\end_layout
+
+\begin_layout Code
+
+  --disable-db-ipv6       Disable IPv6 database (default: enabled)
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+  --enable-ip2location    Enable IP2Location support (default: disabled)
+\end_layout
+
+\begin_layout Code
+
+  --enable-geoip          Enable GeoIP support (default: disabled) 
+\end_layout
+
+\begin_layout Code
+
+ 
+\end_layout
+
+\begin_layout Code
+
+  --with-ip2location-headers=DIR
+\end_layout
+
+\begin_layout Code
+
+                          IP2Location include files location
+\end_layout
+
+\begin_layout Code
+
+  --with-ip2location-lib=DIR
+\end_layout
+
+\begin_layout Code
+
+                          IP2Location library location
+\end_layout
+
+\begin_layout Code
+
+  --with-ip2location-static
+\end_layout
+
+\begin_layout Code
+
+                          Explicitly link IP2Location statically (default=no)
+\end_layout
+
+\begin_layout Code
+
+  --with-ip2location-ipv4-default-file=file
+\end_layout
+
+\begin_layout Code
+
+                          Use a default IP2Location IPv4 database file when
+\end_layout
+
+\begin_layout Code
+
+                          ipv6calc is invoked with
+\end_layout
+
+\begin_layout Code
+
+                          '--db-ip2location-ipv4-default|-L'
+\end_layout
+
+\begin_layout Code
+
+  --with-ip2location-ipv6-default-file=file
+\end_layout
+
+\begin_layout Code
+
+                          Use a default IP2Location IPv6 database file when
+\end_layout
+
+\begin_layout Code
+
+                          ipv6calc is invoked with
+\end_layout
+
+\begin_layout Code
+
+                          '--db-ip2location-ipv6-default|-L'
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-headers=DIR
+\end_layout
+
+\begin_layout Code
+
+                          GeoIP include files location
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-lib=DIR    GeoIP library location
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-static     Explicitly link GeoIP statically (default=no)
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-ipv4-default-file=file
+\end_layout
+
+\begin_layout Code
+
+                          Use a default GeoIP IPv4 database file when ipv6calc
+\end_layout
+
+\begin_layout Code
+
+                          is invoked with '--db-geoip-ipv4-default|-G'
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-ipv6-default-file=file
+\end_layout
+
+\begin_layout Code
+
+                          Use a default GeoIP IPv6 database file when ipv6calc
+\end_layout
+
+\begin_layout Code
+
+                          is invoked with '--db-geoip-ipv6-default|-G'
+\end_layout
+
+\begin_layout Code
+
+  --with-geoip-ipv6-compat
+\end_layout
+
+\begin_layout Code
+
+                          Use IPv6 interface of GeoIP in compatibility mode
+\end_layout
+
+\begin_layout Code
+
+                          (supporting 1.4.5) 
+\end_layout
+
+\begin_layout Subsection
+Compiling
+\end_layout
+
+\begin_layout Standard
+As usual, use
+\end_layout
+
+\begin_layout Code
+
+$ make
+\end_layout
+
+\begin_layout Standard
+and run tests afterwards using
+\end_layout
+
+\begin_layout Code
+
+$ make test
+\end_layout
+
+\begin_layout Standard
+or at least (e.g.
+ if external databases are not available)
+\end_layout
+
+\begin_layout Code
+
+$ make test-minimal
+\end_layout
+
+\begin_layout Section
+Mailling Lists
+\end_layout
+
+\begin_layout Subsection
+ipv6calc-announce
+\end_layout
+
+\begin_layout Description
+Reason: sending announcements of new versions
+\end_layout
+
+\begin_layout Description
+Traffic: very low
+\end_layout
+
+\begin_layout Description
+Postings: only moderators are allowed to post
+\end_layout
+
+\begin_layout Description
+Information: 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6 / maillist ipv6calc-announce"
+target "http://lists.deepspace6.net/listinfo/ipv6calc-announce"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ipv6calc
+\end_layout
+
+\begin_layout Description
+Reason: discussions
+\end_layout
+
+\begin_layout Description
+Traffic: low
+\end_layout
+
+\begin_layout Description
+Postings: subscribers
+\end_layout
+
+\begin_layout Description
+Information: 
+\begin_inset CommandInset href
+LatexCommand href
+name "DeepSpace6 / maillist ipv6calc"
+target "http://lists.deepspace6.net/listinfo/ipv6calc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Bug Reports
+\end_layout
+
+\begin_layout Standard
+You can send bug reports to the author himself or subscribe to maillist
+ 
+\begin_inset Quotes eld
+\end_inset
+
+ipv6calc
+\begin_inset Quotes erd
+\end_inset
+
+ and send it to the list.
+\end_layout
+
+\begin_layout Section
+Features of ipv6calc
+\end_layout
+
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Standard
+The main program named 
+\begin_inset Quotes eld
+\end_inset
+
+ipv6calc
+\begin_inset Quotes erd
+\end_inset
+
+ is able to recognize many (not only) IPv6 address formats and depending
+ on a selectable action (not required) a selectable output format can be
+ specified.
+ Also it has the capability to show detailed information of an IPv4/IPv6
+ address or anonymize it.
+\end_layout
+
+\begin_layout Subsection
+List of built-in features
+\end_layout
+
+\begin_layout Standard
+Option 
+\begin_inset Quotes eld
+\end_inset
+
+-v
+\begin_inset Quotes erd
+\end_inset
+
+ shows built-in features, depending on configuration before compiling:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc/ipv6calc -v 
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+\end_layout
+
+\begin_layout Standard
+Option 
+\begin_inset Quotes eld
+\end_inset
+
+-v -v
+\begin_inset Quotes erd
+\end_inset
+
+ (since 0.91.0) shows built-in features in detail, depending on configuration
+ before compiling:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc/ipv6calc -v -v
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+IEEE database included: IAB/20111008 OUI/20111008 
+\end_layout
+
+\begin_layout Code
+
+IPv4 database included: AFRINIC/20111008 APNIC/20111007 ARIN/20111007 IANA/20110
+203 LACNIC/20111006 RIPENCC/20111007
+\end_layout
+
+\begin_layout Code
+
+IPv6 database included: AFRINIC/20111008 APNIC/20111007 ARIN/20111007 IANA/20080
+827 LACNIC/20111006 RIPENCC/20111007
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+GeoIP support enabled, compiled with IPv4 & IPv6 support 
+\end_layout
+
+\begin_layout Code
+
+GeoIP dynamic library version (on this system): 1.4.8 
+\end_layout
+
+\begin_layout Code
+
+GeoIP IPv4 default file: /var/local/share/GeoIP/GeoIP.dat 
+\end_layout
+
+\begin_layout Code
+
+GeoIP IPv6 default file: /var/local/share/GeoIP/GeoIPv6.dat
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+IP2Location support enabled, compiled with API version: 4.0.2 
+\end_layout
+
+\begin_layout Code
+
+IP2Location IPv4 default file: /var/local/share/IP2Location/IP-COUNTRY-SAMPLE.BIN
+\end_layout
+
+\begin_layout Code
+
+IP2Location IPv6 default file: /var/local/share/IP2Location/IPV6-COUNTRY.BIN
+ 
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Subsubsection
+Conversion
+\end_layout
+
+\begin_layout Standard
+A simple example is the conversion of an IPv6 address to a DNS PTR query
+ string:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc --out revnibbles.arpa 2001:db8::1
+\end_layout
+
+\begin_layout Code
+
+No input type specified, try autodetection...found type: ipv6addr
+\end_layout
+
+\begin_layout Code
+
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa.
+\end_layout
+
+\begin_layout Standard
+Like you see, input format was autodetected.
+ And the given example can be extended because ipv6calc also understands
+ netmask / prefix length values:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -q --out revnibbles.arpa 2001:db8::1/64
+\end_layout
+
+\begin_layout Code
+
+0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa.
+\end_layout
+
+\begin_layout Standard
+Also you've also learnt now that switch '-q' (quiet) suppresses informational
+ messages.
+ You can use this now to start a DNS PTR query using:
+\end_layout
+
+\begin_layout Code
+
+$ dig PTR `./ipv6calc -q --out revnibbles.arpa 2001:db8::1/64`
+\end_layout
+
+\begin_layout Standard
+But ipv6calc can do many more for you! Next example shows you the extraction
+ of the IPv4 address contained in a 6to4 IPv6 address:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -q --action conv6to4 --in ipv6 2002:c0a8:fb61::1 --out ipv4
+\end_layout
+
+\begin_layout Code
+
+192.168.251.97
+\end_layout
+
+\begin_layout Standard
+This also works vice-versa:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -q --action conv6to4 --in ipv4 192.168.251.97 --out ipv6
+\end_layout
+
+\begin_layout Code
+
+2002:c0a8:fb61::
+\end_layout
+
+\begin_layout Standard
+There are many more features already implemented, if you miss one, send
+ a note.
+\end_layout
+
+\begin_layout Subsubsection
+Information
+\end_layout
+
+\begin_layout Standard
+Information about a simple IPv6 address:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -q -i 3ffe:ffff::210:a4ff:fe01:2345
+\end_layout
+
+\begin_layout Code
+
+Address type: unicast, 6bone, global-unicast, productive
+\end_layout
+
+\begin_layout Code
+
+Address type has SLA: 0000
+\end_layout
+
+\begin_layout Code
+
+Registry for address: reserved
+\end_layout
+
+\begin_layout Code
+
+Interface identifier: 0210:a4ff:fe01:2345
+\end_layout
+
+\begin_layout Code
+
+EUI-48/MAC address: 00:10:a4:01:23:45
+\end_layout
+
+\begin_layout Code
+
+MAC is a global unique one
+\end_layout
+
+\begin_layout Code
+
+MAC is an unicast one
+\end_layout
+
+\begin_layout Code
+
+OUI is: XIRCOM
+\end_layout
+
+\begin_layout Standard
+Information about a Teredo IPv6 address:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -q -i 3ffe:831f:ce49:7601:8000:efff:af4a:86BF
+\end_layout
+
+\begin_layout Code
+
+Address type: unicast, 6bone, global-unicast, productive, teredo
+\end_layout
+
+\begin_layout Code
+
+IPv4 address: 80.181.121.64
+\end_layout
+
+\begin_layout Code
+
+IPv4 registry[80.181.121.64]: RIPENCC
+\end_layout
+
+\begin_layout Code
+
+IPv4 address: 206.73.118.1
+\end_layout
+
+\begin_layout Code
+
+IPv4 registry[206.73.118.1]: ARIN
+\end_layout
+
+\begin_layout Code
+
+Address type is Teredo and included IPv4 server address is: 80.181.121.64 and
+ client port: 4096
+\end_layout
+
+\begin_layout Code
+
+IPv4 registry for Teredo server address: ARIN
+\end_layout
+
+\begin_layout Code
+
+Registry for address: reserved
+\end_layout
+
+\begin_layout Standard
+There exists also a machine readable output (e.g.
+ used by 'ipv6calcweb.cgi') - in addition, here 
+\begin_inset CommandInset href
+LatexCommand href
+name "IP2Location"
+target "http://www.ip2location.com/"
+
+\end_inset
+
+ and/or 
+\begin_inset CommandInset href
+LatexCommand href
+name "GeoIP"
+target "http://www.maxmind.com/"
+
+\end_inset
+
+ information can be displayed, if databases are specified.
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -G -L -q -i -m 2a01:238:423d:8800:85b3:9e6b:3019:8909  
+\end_layout
+
+\begin_layout Code
+
+IPV6=2a01:0238:423d:8800:85b3:9e6b:3019:8909 
+\end_layout
+
+\begin_layout Code
+
+TYPE=unicast,global-unicast 
+\end_layout
+
+\begin_layout Code
+
+SLA=8800 
+\end_layout
+
+\begin_layout Code
+
+IPV6_REGISTRY=RIPENCC 
+\end_layout
+
+\begin_layout Code
+
+IID=85b3:9e6b:3019:8909 
+\end_layout
+
+\begin_layout Code
+
+EUI64_SCOPE=local 
+\end_layout
+
+\begin_layout Code
+
+IP2LOCATION_DATABASE_INFO_IPV6=url=http://www.ip2location.com date=2011-05-12
+ entries=24341 apiversion=4.0.2 
+\end_layout
+
+\begin_layout Code
+
+IP2LOCATION_COUNTRY_SHORT=DE 
+\end_layout
+
+\begin_layout Code
+
+IP2LOCATION_COUNTRY_LONG= 
+\end_layout
+
+\begin_layout Code
+
+GEOIP_COUNTRY_SHORT=DE 
+\end_layout
+
+\begin_layout Code
+
+GEOIP_COUNTRY_LONG=Germany 
+\end_layout
+
+\begin_layout Code
+
+GEOIP_DATABASE_INFO_IPV6=GEO-106FREE 20110501 Build 1 Copyright (c) 2011
+ MaxMind Inc All Rights Reserved apiversion=system 
+\end_layout
+
+\begin_layout Code
+
+IPV6CALC_NAME=ipv6calc 
+\end_layout
+
+\begin_layout Code
+
+IPV6CALC_VERSION=0.92.0 
+\end_layout
+
+\begin_layout Code
+
+IPV6CALC_COPYRIGHT="(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de>
+" 
+\end_layout
+
+\begin_layout Code
+
+IPV6CALC_OUTPUT_VERSION=5 
+\end_layout
+
+\begin_layout Code
+
+IPV6CALC_FEATURES="IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6" 
+\end_layout
+
+\begin_layout Subsection
+Option style
+\end_layout
+
+\begin_layout Standard
+Since version 0.40 new-style option handling was introduced, using
+\end_layout
+
+\begin_layout Itemize
+--in <inputtype>
+\end_layout
+
+\begin_layout Itemize
+--out <outputtype>
+\end_layout
+
+\begin_layout Itemize
+--action <actiontype>
+\end_layout
+
+\begin_layout Standard
+and many more conversions were added.
+ A built-in check matrix should prevent misconversions.
+\end_layout
+
+\begin_layout Standard
+Up to version 0.39, only old-style options (which perhaps - but it's not
+ planned at the moment - are going obsolete sometimes the future) were available.
+ They are one-in-all options, specifying input/action/output in one token.
+ Internally this options will be converted into new-style options.
+\end_layout
+
+\begin_layout Subsection
+Online help
+\end_layout
+
+\begin_layout Standard
+Online help always shows the currently implemented features.
+\end_layout
+
+\begin_layout Subsubsection
+Main online help:
+\end_layout
+
+\begin_layout Standard
+IP2Location and GeoIP options only appear if compiled with such support.
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc -? 
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+ 
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de>
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ General:   [-d|--debug <debug value>] : debug value (bitwise like)
+\end_layout
+
+\begin_layout Code
+
+  [-q|--quiet]               : be more quiet (auto-enabled in pipe mode)
+\end_layout
+
+\begin_layout Code
+
+  [-f|--flush]               : flush each line in pipe mode
+\end_layout
+
+\begin_layout Code
+
+  -v                         : show version (and included features)
+\end_layout
+
+\begin_layout Code
+
+  -v -v                      : show verbose version information
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Usage with new style options:
+\end_layout
+
+\begin_layout Code
+
+  [--in|-I <input type>]   : specify input  type
+\end_layout
+
+\begin_layout Code
+
+                             (default: autodetect)
+\end_layout
+
+\begin_layout Code
+
+  [--out|-O <output type>] : specify output type
+\end_layout
+
+\begin_layout Code
+
+                             (sometimes: autodetect)
+\end_layout
+
+\begin_layout Code
+
+  [--action|-A <action>]   : specify action
+\end_layout
+
+\begin_layout Code
+
+                             (default: format conversion, sometimes: autodetect)
+\end_layout
+
+\begin_layout Code
+
+  [<format option> ...] : specify format options
+\end_layout
+
+\begin_layout Code
+
+  <input data> [...]    : input data
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+  Available input  types:  [-m] --in     -?|-h|--help
+\end_layout
+
+\begin_layout Code
+
+  Available output types:  [-m] --out    -?|-h|--help
+\end_layout
+
+\begin_layout Code
+
+  Available action types:  [-m] --action -?|-h|--help
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+Other usage:
+\end_layout
+
+\begin_layout Code
+
+  --showinfo|-i [--machine_readable|-m] : show information about input data
+\end_layout
+
+\begin_layout Code
+
+  --showinfo|-i --show_types            : show available types on '-m'
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+  [--db-ip2location-ipv4 <file>] : IP2Location IPv4 database file (optional)
+\end_layout
+
+\begin_layout Code
+
+  [--db-ip2location-ipv6 <file>] : IP2Location IPv6 database file (optional)
+\end_layout
+
+\begin_layout Code
+
+  [--db-ip2location-ipv4-default|-L] : enable & use IP2Location IPv4 default
+ database file (optional)
+\end_layout
+
+\begin_layout Code
+
+                                        /var/local/share/IP2Location/IP-COUNTRY-
+SAMPLE.BIN
+\end_layout
+
+\begin_layout Code
+
+  [--db-ip2location-ipv6-default|-L] : enable & use IP2Location IPv6 default
+ database file (optional)
+\end_layout
+
+\begin_layout Code
+
+                                        /var/local/share/IP2Location/IPV6-COUNTR
+Y.BIN
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+  [--db-geoip-ipv4 <file>]  : GeoIP IPv4 database file (optional)
+\end_layout
+
+\begin_layout Code
+
+  [--db-geoip-ipv6 <file>]  : GeoIP IPv6 database file (optional)
+\end_layout
+
+\begin_layout Code
+
+  [--db-geoip-ipv4-default|-G] : enable & use GeoIP IPv4 default database
+ file (optional)
+\end_layout
+
+\begin_layout Code
+
+                                  /var/local/share/GeoIP/GeoIP.dat 
+\end_layout
+
+\begin_layout Code
+
+  [--db-geoip-ipv6-default|-G] : enable & use GeoIP IPv6 default database
+ file (optional)
+\end_layout
+
+\begin_layout Code
+
+                                  /var/local/share/GeoIP/GeoIPv6.dat
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ To see old-style option use: --printoldoptions 
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Subsubsection
+Input-type options
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc --in -?
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de> 
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Available input types:
+\end_layout
+
+\begin_layout Code
+
+  auto           : automatic detection
+\end_layout
+
+\begin_layout Code
+
+  revnibbles.int : dot separated nibbles reverse, ending with ip6.int.
+\end_layout
+
+\begin_layout Code
+
+  revnibbles.arpa: dot separated nibbles reverse, ending with ip6.arpa.
+\end_layout
+
+\begin_layout Code
+
+  bitstring      : bitstring labes, ending with ip6.arpa.
+\end_layout
+
+\begin_layout Code
+
+  ipv6addr       : IPv6 address
+\end_layout
+
+\begin_layout Code
+
+  ipv4addr       : IPv4 address
+\end_layout
+
+\begin_layout Code
+
+  ipv4hex        : IPv4 in hexdecimal format
+\end_layout
+
+\begin_layout Code
+
+  ipv4revhex     : IPv4 in byte-reversed hexdecimal format
+\end_layout
+
+\begin_layout Code
+
+  mac            : MAC address (48 bits)
+\end_layout
+
+\begin_layout Code
+
+  base85         : Base-85 string
+\end_layout
+
+\begin_layout Code
+
+  ifinet6        : Like line in /proc/net/if_inet6
+\end_layout
+
+\begin_layout Code
+
+  iid+token      : Interface identifier and token
+\end_layout
+
+\begin_layout Code
+
+  ipv6logconv    : ipv6logconv (currently not supported)
+\end_layout
+
+\begin_layout Code
+
+  prefix+mac     : IPv6 prefix and a MAC address
+\end_layout
+
+\begin_layout Subsubsection
+Output-type options:
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc --out -?
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de> 
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Available output types:
+\end_layout
+
+\begin_layout Code
+
+  revnibbles.int : dot separated nibbles reverse, ending with ip6.int.
+\end_layout
+
+\begin_layout Code
+
+  revnibbles.arpa: dot separated nibbles reverse, ending with ip6.arpa.
+\end_layout
+
+\begin_layout Code
+
+  bitstring      : bitstring labes, ending with ip6.arpa.
+\end_layout
+
+\begin_layout Code
+
+  ipv6addr       : IPv6 address
+\end_layout
+
+\begin_layout Code
+
+  ipv4addr       : IPv4 address
+\end_layout
+
+\begin_layout Code
+
+  mac            : MAC address (48 bits)
+\end_layout
+
+\begin_layout Code
+
+  eui64          : EUI-64 identifier (64 bits)
+\end_layout
+
+\begin_layout Code
+
+  base85         : Base-85 string
+\end_layout
+
+\begin_layout Code
+
+  ifinet6        : Like line in /proc/net/if_inet6
+\end_layout
+
+\begin_layout Code
+
+  iid            : Interface identifier
+\end_layout
+
+\begin_layout Code
+
+  iid+token      : Interface identifier and token
+\end_layout
+
+\begin_layout Code
+
+  addrtype       : Address type
+\end_layout
+
+\begin_layout Code
+
+  ouitype        : OUI (IEEE) type
+\end_layout
+
+\begin_layout Code
+
+  ipv6addrtype   : IPv6 address type
+\end_layout
+
+\begin_layout Code
+
+  any            : any type (currently not supported)
+\end_layout
+
+\begin_layout Code
+
+  revipv4        : reverse IPv4, ending with in-addr.arpa
+\end_layout
+
+\begin_layout Code
+
+  ipv4hex        : IPv4 in hexdecimal format
+\end_layout
+
+\begin_layout Code
+
+  octal          : IP address in escaped octal format
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ For examples and available format options use:
+\end_layout
+
+\begin_layout Code
+
+    --out <type> --examples
+\end_layout
+
+\begin_layout Subsubsection
+Action-type options: 
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc --action -?
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.92.0 IP2Location GeoIP GeoIPv6 DB_IEEE DB_IPV4 DB_IPV6
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de> 
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Available action types:
+\end_layout
+
+\begin_layout Code
+
+  auto          : Automatic selection of action (default)
+\end_layout
+
+\begin_layout Code
+
+  geneui64      : Converts a MAC address to an EUI-64 address
+\end_layout
+
+\begin_layout Code
+
+  conv6to4      : Converts IPv4 address <-> 6to4 IPv6 address (prefix)
+\end_layout
+
+\begin_layout Code
+
+  genprivacyiid : Generates a privacy interface ID out of a given one and
+ a token
+\end_layout
+
+\begin_layout Code
+
+  prefixmac2ipv6: Generates an IPv6 address out of a prefix and a MAC address
+\end_layout
+
+\begin_layout Code
+
+  anonymize        : Anonymize IPv4/IPv6 address without loosing much informatio
+n
+\end_layout
+
+\begin_layout Code
+
+  6rd_local_prefix : Calculate the 6rd prefix from given IPv6 prefix & relay
+ prefix and IPv4
+\end_layout
+
+\begin_layout Code
+
+                      Required options:
+\end_layout
+
+\begin_layout Code
+
+                       --6rd_prefix ...
+\end_layout
+
+\begin_layout Code
+
+                       --6rd_relay_prefix ...
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Because of historical issues, there exists also a support of the old-styled
+ options: 
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6calc --printoldoptions
+\end_layout
+
+\begin_layout Code
+
+ipv6calc: version 0.81.0
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2001-2011 by Peter Bieringer <pb (at) bieringer.de>
+\end_layout
+
+\begin_layout Code
+
+ Usage with old style (shortcut) options (going obsolete): 
+\end_layout
+
+\begin_layout Code
+
+  <shortcut option> [<format option> ...] <input data> [...]
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+  --addr2ip6_int 
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_ip6int
+\end_layout
+
+\begin_layout Code
+
+  --addr2ip6_arpa
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_ip6arpa
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_bitstring
+\end_layout
+
+\begin_layout Code
+
+  --addr2compaddr
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_compressed
+\end_layout
+
+\begin_layout Code
+
+  --addr2uncompaddr
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_uncompressed
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_base85
+\end_layout
+
+\begin_layout Code
+
+  --base85_to_addr
+\end_layout
+
+\begin_layout Code
+
+  --mac_to_eui64
+\end_layout
+
+\begin_layout Code
+
+  --addr2fulluncompaddr
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_fulluncompressed
+\end_layout
+
+\begin_layout Code
+
+  --addr2if_inet6
+\end_layout
+
+\begin_layout Code
+
+  --addr_to_ifinet6
+\end_layout
+
+\begin_layout Code
+
+  --if_inet62addr
+\end_layout
+
+\begin_layout Code
+
+  --ifinet6_to_compressed
+\end_layout
+
+\begin_layout Code
+
+  --eui64_to_privacy
+\end_layout
+
+\begin_layout Code
+
+  --ipv4_to_6to4addr
+\end_layout
+
+\begin_layout Section
+Webserver log conversion helper program "ipv6logconv"
+\end_layout
+
+\begin_layout Standard
+This program parses address tokens of a given webserver logfile and converts
+ them to special strings, useful for statistics (e.g.
+ created by using "analog").
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Standard
+A demonstration about which kind of statistics are possible to produce is
+ shown at 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.ipv6.bieringer.de/"
+target "http://www.ipv6.bieringer.de/"
+
+\end_inset
+
+ (IPv6 only).
+\end_layout
+
+\begin_layout Section
+Webserver log anonymization helper program "ipv6loganon"
+\end_layout
+
+\begin_layout Standard
+On autoconfiguration, the interface part of an IPv6 address is based on
+ the MAC address of the network interface card (NIC).
+ This address is used for outgoing requests, if privacy option (RFC3041
+ / RFC4941) is not enabled.
+ This results in many privacy related information on web- or mail-server
+ log files.
+ Administrators, which won't (be allowed to) store such information over
+ time, but still do not want to loose information about address type distributio
+n should use 'ipv6loganon' to anonymize their log files.
+\end_layout
+
+\begin_layout Subsection
+Anonymization details
+\end_layout
+
+\begin_layout Standard
+The anonymizer would keep as much information as possible for IPv6 address
+ types.
+\end_layout
+
+\begin_layout Standard
+Client-side IID would be anonymized by
+\end_layout
+
+\begin_layout Itemize
+UI-48 based: serial number would be zero'ed, keeping OID
+\end_layout
+
+\begin_layout Itemize
+EUI-64 based: serial number would be zero'ed, keeping OID
+\end_layout
+
+\begin_layout Itemize
+ISATAP: client IPv4 address would be anonymized by given IPv4 mask
+\end_layout
+
+\begin_layout Itemize
+TEREDO: client IPv4 address would be anonymized by given IPv4 mask, client
+ port would be zero'ed
+\end_layout
+
+\begin_layout Itemize
+6to4(Microsoft): client IPv4 address would be anonymized by given IPv4 mask
+\end_layout
+
+\begin_layout Itemize
+local: whole IID would be zero'ed
+\end_layout
+
+\begin_layout Standard
+Client-side SLA would be anonymized by 
+\end_layout
+
+\begin_layout Itemize
+SLA would be zero'ed
+\end_layout
+
+\begin_layout Standard
+Prefix would be anonymized by
+\end_layout
+
+\begin_layout Itemize
+6to4: client IPv4 address would be anonymized by given IPv4 mask
+\end_layout
+
+\begin_layout Standard
+Compat/Mapped IPv4 addresses would be anonymized by
+\end_layout
+
+\begin_layout Itemize
+IPv4 address would be anonymized by given IPv4 mask
+\end_layout
+
+\begin_layout Subsection
+Supported log file formats
+\end_layout
+
+\begin_layout Standard
+Currently native supported log files:
+\end_layout
+
+\begin_layout Itemize
+Apache log file format, 1st token is IPv4 or IPv6 address
+\end_layout
+
+\begin_layout Standard
+There are plans to support also mail server log files sometimes in the future,
+ but because of different formats, this would be probably done by a Perl
+ program which parses the log file and a (cached) 'ip6calc' call with action
+ 'anonymize'.
+\end_layout
+
+\begin_layout Subsection
+Supported options
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6loganon -?
+\end_layout
+
+\begin_layout Code
+
+ipv6loganon: version 0.81.0
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2007-2011 by Peter Bieringer <pb (at) bieringer.de>
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+This program anonymizes IPv4/IPv6 addresses in HTTP server log files
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ General:
+\end_layout
+
+\begin_layout Code
+
+  [-d|--debug <debug value>] : debug value (bitwise like)
+\end_layout
+
+\begin_layout Code
+
+  [-V|--verbose] : be verbose
+\end_layout
+
+\begin_layout Code
+
+  [-n|--nocache] : disable caching
+\end_layout
+
+\begin_layout Code
+
+  [-c|--cachelimit <value>] : set cache limit
+\end_layout
+
+\begin_layout Code
+
+                               default: 20
+\end_layout
+
+\begin_layout Code
+
+                               maximum: 200
+\end_layout
+
+\begin_layout Code
+
+ Output anonymization:
+\end_layout
+
+\begin_layout Code
+
+  --mask-ipv4 <bits>     : mask all IPv4 addresses [0-32], default 24
+\end_layout
+
+\begin_layout Code
+
+                            even if occurs in IPv6-IID
+\end_layout
+
+\begin_layout Code
+
+  --mask-ipv6 <bits>     : mask IPv6 prefix [0-64], default 48
+\end_layout
+
+\begin_layout Code
+
+                            only applied to related address types
+\end_layout
+
+\begin_layout Code
+
+  --no-mask-iid          : do not mask non-IPv4 based IPv6-IID
+\end_layout
+
+\begin_layout Code
+
+  --anonymize-standard   : preset for standard anonymization (default)
+\end_layout
+
+\begin_layout Code
+
+                            mask-ipv4=24 mask-ipv6=48 mask-iid
+\end_layout
+
+\begin_layout Code
+
+  --anonymize-careful    : preset for careful anonymization
+\end_layout
+
+\begin_layout Code
+
+                            mask-ipv4=20 mask-ipv6=40 mask-iid
+\end_layout
+
+\begin_layout Code
+
+  --anonymize-paranoid   : preset for paranoid anonymization
+\end_layout
+
+\begin_layout Code
+
+                            mask-ipv4=16 mask-ipv6=32 mask-iid
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Takes data from stdin, outputs the processed data to stdout
+\end_layout
+
+\begin_layout Subsection
+Usage
+\end_layout
+
+\begin_layout Subsubsection
+Offline anonymization
+\end_layout
+
+\begin_layout Code
+
+$ cat /path/to/http_log | ./ipv6loganon >/path/to/http_log_anonymized
+\end_layout
+
+\begin_layout Subsubsection
+On-the-fly online anonymization
+\end_layout
+
+\begin_layout Standard
+(Supported since 0.90.0)
+\end_layout
+
+\begin_layout Standard
+Adjust httpd.conf like following:
+\end_layout
+
+\begin_layout Code
+
+CustomLog "|/usr/local/bin/ipv6loganon -a -f /var/log/httpd/access_log"
+ combined
+\end_layout
+
+\begin_layout Standard
+In case of 
+\begin_inset Quotes eld
+\end_inset
+
+cronolog
+\begin_inset Quotes erd
+\end_inset
+
+ is used on the system, configure like this:
+\end_layout
+
+\begin_layout Code
+
+CustomLog "|/usr/bin/ipv6loganon -f |/usr/sbin/cronolog /var/log/httpd/access.log
+-%Y%m%d" combined 
+\end_layout
+
+\begin_layout Section
+Perl CGI wrapper program "ipv6calcweb.cgi"
+\end_layout
+
+\begin_layout Standard
+Because calling C programs directly as CGI isn't really recommended (too
+ much security troubles all the time), I wrote a small wrapper utility which
+ calls "ipv6calc" to get information about client and server address for
+ displaying on a web page.
+ 
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Standard
+A demonstration about which kind of output is possible to produce is shown
+ at
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.ipv6.bieringer.de/"
+target "http://www.ipv6.bieringer.de/"
+
+\end_inset
+
+ (IPv6 only)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "http://mirrors.bieringer.de/"
+target "http://mirrors.bieringer.de/"
+
+\end_inset
+
+ (IPv4/IPv6)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.sixxs.net/tools/ipv6calc/"
+target "http://www.sixxs.net/tools/ipv6calc/"
+
+\end_inset
+
+ (IPv4/IPv6)
+\end_layout
+
+\begin_layout Section
+Webserver log statistics helper program "ipv6logstats"
+\end_layout
+
+\begin_layout Standard
+This program parses a given webserver logfile and count addresses, useful
+ for time period statistics.
+\end_layout
+
+\begin_layout Subsection
+Supported options
+\end_layout
+
+\begin_layout Code
+
+$ ./ipv6logstats -?
+\end_layout
+
+\begin_layout Code
+
+ipv6logstats: version 0.81.0
+\end_layout
+
+\begin_layout Code
+
+(P) & (C) 2007-2011 by Peter Bieringer <pb (at) bieringer.de>
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ General:
+\end_layout
+
+\begin_layout Code
+
+  [-d|--debug <debug value>] : debug value (bitwise like)
+\end_layout
+
+\begin_layout Code
+
+  [-u|--unknown]             : print unknown IP addresses to stderr
+\end_layout
+
+\begin_layout Code
+
+  [-c|--colums]              : print statistics in colums
+\end_layout
+
+\begin_layout Code
+
+  [-n|--noheader]            : don't print header in colums mode
+\end_layout
+
+\begin_layout Code
+
+  [-o|--onlyheader]          : print only header in colums mode
+\end_layout
+
+\begin_layout Code
+
+  [-p|--prefix <token>]      : print token as prefix
+\end_layout
+
+\begin_layout Code
+
+\end_layout
+
+\begin_layout Code
+
+ Takes http log data from stdin and print a table on output
+\end_layout
+
+\begin_layout Subsection
+Usage
+\end_layout
+
+\begin_layout Standard
+There are a README and some helper scripts available in the package how
+ to use this program and how to generate a graph using Gnuplot.
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Standard
+A demonstration with real data is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://mirrors.bieringer.de/stats/timeline.html"
+target "http://mirrors.bieringer.de/stats/timeline.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+History
+\end_layout
+
+\begin_layout Standard
+Major extensions/changes are listed here
+\end_layout
+
+\begin_layout Subsection
+2011
+\end_layout
+
+\begin_layout Itemize
+ipv6calc/ipv6calcweb.cgi: enable included GeoIP support with IPv6 (usable
+ with GeoIP >= 1.4.5)
+\end_layout
+
+\begin_layout Itemize
+ipv6calc: extend for 6rd support (--action 6rd_local_prefix --6rd_prefix
+ <PREFIX> --6rd_relay_prefix <RELAY_PREFIX>)
+\end_layout
+
+\begin_layout Itemize
+ipv6calc: enable stdin support for bulk transformation
+\end_layout
+
+\begin_layout Itemize
+ipv6calc: add support for NAT64 address type
+\end_layout
+
+\begin_layout Itemize
+ipv6calc: add option 
+\begin_inset Quotes eld
+\end_inset
+
+forceprefix <LENGTH>
+\begin_inset Quotes erd
+\end_inset
+
+ to print prefix of an address without a given prefix length
+\end_layout
+
+\begin_layout Itemize
+ipv6loganon: extend for pipe usage (e.g.
+ in Apache log file directive) and write/append to specified file
+\end_layout
+
+\begin_layout Itemize
+General: add configure options to disable built-in databases (reduce binary
+ size a lot, e.g.
+ for embedded devices)
+\end_layout
+
+\begin_layout Subsection
+2010 and older
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\end_body
+\end_document

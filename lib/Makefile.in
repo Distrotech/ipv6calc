@@ -1,0 +1,94 @@
+# Project    : ipv6calc/lib
+# File       : Makefile
+# Version    : $Id: Makefile.in,v 1.3 2011/09/16 18:05:13 peter Exp $
+# Copyright  : 2002-2006 by Peter Bieringer <pb (at) bieringer.de>
+#
+# Information:
+#  Makefile for ipv6calc library
+#
+
+# Compiler and Linker Options
+#  -D__EXTENSIONS__ is for Solaris & strtok_r
+DEFAULT_CFLAGS ?= -O2 -Wall
+CFLAGS += -D__EXTENSIONS__
+
+INCLUDES= -I../ $(GETOPT_INCLUDE) -I../md5/
+
+CC	= @CC@
+AR	= ar
+RANLIB	= @RANLIB@
+
+OBJS	=	libipv6calc.o  \
+		libipv6addr.o  \
+		libipv4addr.o  \
+		libieee.o      \
+		libeui64.o     \
+		libmac.o       \
+		librfc1884.o   \
+		librfc1886.o   \
+		librfc1924.o   \
+		librfc2874.o   \
+		librfc3041.o   \
+		librfc3056.o   \
+		librfc5569.o   \
+		libifinet6.o   \
+		ipv6calchelp.o \
+		ipv6calctypes.o
+
+all:		libipv6calc.a
+
+libieee.o:	../databases/ieee-oui/dbieee_oui.h libieee.c libieee.h
+		cd ../ && ${MAKE} db-ieee-oui-make
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -c libieee.c
+
+libipv4addr.o:	../databases/ipv4-assignment/dbipv4addr_assignment.h libipv4addr.c libipv4addr.h
+		cd ../ && ${MAKE} db-ipv4-assignment-make
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -c libipv4addr.c
+
+libipv6addr.o:	../databases/ipv6-assignment/dbipv6addr_assignment.h libipv6addr.c libipv6addr.h
+		cd ../ && ${MAKE} db-ipv6-assignment-make
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -c libipv6addr.c
+
+.c.o:
+		$(CC) $(DEFAULT_CFLAGS) $(CFLAGS) $(INCLUDES) -c $<
+
+$(OBJS):	libipv6calcdebug.h  \
+		libipv6calc.h       \
+		libipv6addr.h       \
+		libipv4addr.h       \
+		libieee.h           \
+		libeui64.h          \
+		libmac.h            \
+		librfc1884.h        \
+		librfc1886.h        \
+		librfc1924.h        \
+		librfc2874.h        \
+		librfc3041.h        \
+		librfc3056.h        \
+		libifinet6.h        \
+		ipv6calchelp.h      \
+		ipv6calctypes.h     \
+		ipv6calcoptions.h   \
+		ipv6calccommands.h  \
+		ipv6calc_inttypes.h \
+
+libipv6calc.a:	$(OBJS)
+		cd ../ && ${MAKE} db-ieee-oui-make
+		cd ../ && ${MAKE} db-ipv4-assignment-make
+		cd ../ && ${MAKE} db-ipv6-assignment-make
+		echo "Create library"
+		$(AR) r libipv6calc.a $(OBJS)
+		$(RANLIB) libipv6calc.a
+
+distclean:
+		${MAKE} clean
+
+autoclean:
+		${MAKE} distclean
+
+clean:
+		rm -f *.o *.a
+
+install:
+
+test:
